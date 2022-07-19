@@ -7,7 +7,7 @@
     font-size: 24px;
     height: 40px;
     border-radius: 5px;
-    padding-left: 44px;
+    padding-left: 70px;
     outline: none;
     border: none;
 }
@@ -20,7 +20,7 @@
     font-size: 24px;
     color: rgb(165, 165, 165);
     position: absolute;
-    left: 10px;
+    left: 6%;
     top: 50%;
     transform: translateY(-50%);
-  }
+}

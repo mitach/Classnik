@@ -8,7 +8,8 @@ function InputBlock({
     placeholder,
     type,
     icon,
-    changeHandler
+    changeHandler,
+    validator
 }) {
     return (
         <div className={styles['input-block']}>
@@ -24,6 +25,8 @@ function InputBlock({
                 placeholder={placeholder}
                 type={type}
                 onChange={changeHandler}
+                onBlur={validator}
+                required
             />
         </div>
     );

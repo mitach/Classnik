@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { FaPhone } from 'react-icons/fa';
@@ -10,18 +9,13 @@ import styles from './auth.module.css';
 
 function Auth() {
     let location = useLocation();
-    let [isLogin, setIsLogin] = useState(true);
-
-    const chooseOpposite = (e) => {
-        isLogin = e.target.textContent === 'Login' ? setIsLogin(true) : setIsLogin(false);
-    }
 
     let loginStyleObj = {
-        backgroundColor: isLogin ? '#3b4483' : '#214270'
+        backgroundColor: location.pathname === '/' || location.pathname === '/login' ? '#3b4483' : '#214270'
     }
 
     let registerStyleObj = {
-        backgroundColor: !isLogin ? '#3b4483' : '#214270'
+        backgroundColor: location.pathname === '/register' ? '#3b4483' : '#214270'
     }
 
     return (
@@ -38,8 +32,8 @@ function Auth() {
 
             <div className={styles['auth-container']}>
                 <div className={styles['auth-controller']}>
-                    <Link to='/login' className={styles['controller-btn']} style={loginStyleObj} onClick={chooseOpposite}>Login</Link>
-                    <Link to='/register' className={styles['controller-btn']} style={registerStyleObj} onClick={chooseOpposite}>Register</Link>
+                    <Link to='/login' className={styles['controller-btn']} style={loginStyleObj}>Login</Link>
+                    <Link to='/register' className={styles['controller-btn']} style={registerStyleObj}>Register</Link>
                 </div>
 
                 <div className={styles['auth-form']}>

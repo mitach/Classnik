@@ -11,18 +11,20 @@ function Login() {
         password: '',
     });
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-
-        console.log(values);
-    }
-
     const changeHandler = (e) => {
         setValues(state => ({
             ...state,
             [e.target.name]: e.target.value
         }));
     }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        console.log(values);
+    }
+
+
 
     return (
         <div className={styles['login-form']}>
