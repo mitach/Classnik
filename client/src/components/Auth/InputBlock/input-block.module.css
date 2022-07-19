@@ -1,0 +1,26 @@
+.input-block {
+    position: relative;
+    margin-top: 20px;
+}
+
+.form-input {
+    font-size: 24px;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 44px;
+    outline: none;
+    border: none;
+}
+
+.form-input:focus {
+    background-color: rgb(241, 241, 241);
+}
+
+.input-icon {
+    font-size: 24px;
+    color: rgb(165, 165, 165);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }

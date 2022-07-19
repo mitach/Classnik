@@ -1,0 +1,26 @@
+.login-form {
+    position: relative;
+}
+
+.image {
+    width: 100px;
+    position: absolute;
+    top: -48px;
+    right: -48px;
+}
+
+.submit-btn {
+    margin-top: 20px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    width: 100%;
+    background-color: #d0acd2;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.submit-btn:active {
+    background-color: #c0adc1;
+}

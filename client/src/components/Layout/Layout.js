@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 
 import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
-// import Diary from '../Diary/Diary';
-// import Tests from '../Tests/Tests';
+import Diary from '../Diary/Diary';
+import Tests from '../Tests/Tests';
 
 import styles from './layout.module.css';
 
@@ -29,10 +29,10 @@ function Layout(props) {
             <div>
                 <Sidebar sidebarStyle={sidebarStyle} />
                 <div className={styles['router-body']} style={routerFilterStyle}>
-                    {/* <Routes>
+                    <Routes>
                         <Route path='/diary' element={<Diary />} />
                         <Route path='/tests' element={<Tests />} />
-                    </Routes> */}
+                    </Routes>
                 </div>
             </div>
         </>
