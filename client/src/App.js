@@ -4,6 +4,9 @@ import Auth from './components/Auth/Auth';
 import Layout from "./components/Layout/Layout";
 
 function App() {
+
+  let loggedIn = false;
+
   return (
     <div className="classnik-app">
       <Routes>
