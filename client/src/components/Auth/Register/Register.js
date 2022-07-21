@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { FaLock, FaAt, FaHouseUser, FaUserAlt } from 'react-icons/fa';
 
+import * as authService from '../../../services/authService';
+
 import InputBlock from '../InputBlock/InputBlock';
 
 import styles from './register.module.css';
@@ -27,7 +29,8 @@ function Register() {
             return;
         }
             
-        console.log(values);
+        authService.register(values)
+            .then(user => console.log(user));
     }
 
     const changeHandler = (e) => {
