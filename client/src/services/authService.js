@@ -14,7 +14,7 @@ export const register = async (userData) => {
 
         return result;
     } else {
-        throw new Error({message: 'Unable to create user!'})
+        throw new Error({ message: 'Unable to create user!' })
     }
 }
 
@@ -29,11 +29,9 @@ export const login = async (userData) => {
 
     if (response.ok) {
         const result = await response.json();
-        
-        console.log(result);
 
         return result;
     } else {
-        throw new Error({message: 'Unable to create user!'})
+        throw new Error({ message: 'Unable to create user!' })
     }
 }

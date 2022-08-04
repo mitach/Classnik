@@ -62,6 +62,7 @@ router.post('/login', async (req, res) => {
 
     if (user && validPassword) {
         res.json({
+            role: user.role,
             name: `${user.firstName} ${user.lastName}`,
             email: user.email,
             token: generateToken(user._id),
