@@ -38,6 +38,7 @@ router.post('/register', async (req, res) => {
 
     if (user) {
         res.status(201).json({
+            role: user.role,
             name: `${user.firstName} ${user.lastName}`,
             email: user.email,
             token: generateToken(user._id),
