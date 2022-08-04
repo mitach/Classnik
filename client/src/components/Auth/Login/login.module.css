@@ -20,3 +20,8 @@
 .submit-btn:active {
     background-color: #c0adc1;
 }
+
+.error {
+    color: red;
+    overflow: hidden;
+}

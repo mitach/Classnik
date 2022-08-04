@@ -46,7 +46,31 @@ router.post('/register', async (req, res) => {
         res.status(400);
         throw new Error('Invalid user data!')
     }
-})
+});
+
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    
+    if (!email || !password) {
+        res.status(400);
+        throw new Error('Please add all fields!');
+    }
+
+    // Check for user email
+    const user = await User.findOne({ email });
+    const validPassword = await bcrypt.compare(password, user.password);
+
+    if (user && validPassword) {
+        res.json({
+            name: `${user.firstName} ${user.lastName}`,
+            email: user.email,
+            token: generateToken(user._id),
+        });
+    } else {
+        res.status(400);
+        throw new Error('Invalid credentials!');
+    }
+});
 
 // Generate JWT
 const generateToken = (id) => {

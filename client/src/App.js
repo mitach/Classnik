@@ -21,10 +21,6 @@ function App() {
     setLoggedIn(false);
   }
 
-  // let loggedIn = auth.token ? true : false;
-
-  console.log('auth', auth);
-
   return (
     <AuthContext.Provider value={{ user: auth, userLogin, userLogout }}>
       <div className="classnik-app">
