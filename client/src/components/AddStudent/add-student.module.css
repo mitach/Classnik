@@ -28,7 +28,23 @@
 
 .input {
     height: 26px;
-    width: 95%;
+    width: 43%;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: rgb(51, 51, 51);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.input-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.select {
+    height: 46px;
+    width: 100%;
     outline: none;
     border-radius: 5px;
     padding: 10px;
@@ -46,21 +62,6 @@
     width: 100px;
     height: 50px;
     border: none;
-    border-radius: 5px;
-}
-
-.link {
-    display: inline-block;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    color: rgb(205, 205, 205);
-    background-color: #115e59;
-    margin: 10px;
-    width: auto;
-    padding: 0 10px;
-    height: 30px;
     border-radius: 5px;
 }
 
