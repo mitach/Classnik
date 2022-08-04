@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { FaLock, FaAt } from 'react-icons/fa';
 
-
 import InputBlock from '../InputBlock/InputBlock';
 
 import styles from './login.module.css';
@@ -23,11 +22,7 @@ function Login() {
         e.preventDefault();
 
         console.log(values);
-
-        
     }
-
-
 
     return (
         <div className={styles['login-form']}>

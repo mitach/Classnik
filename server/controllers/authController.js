@@ -6,34 +6,52 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 
-const SALT_ROUNDS = process.env.SALT_ROUNDS;
-
+// @desc    Register new user
+// @route   POST /api/users
+// @access  Public
 router.post('/register', async (req, res) => {
-    console.log(req.body);
+    const { role, firstName, lastName, email, password } = req.body;
 
-    const hashedPassword = await bcrypt.hash(req.body.password, Number(SALT_ROUNDS));
+    if (!firstName || !lastName || !email || !password) {
+        res.status(400);
+        throw new Error('Please add all fields!');
+    }
 
-    console.log(hashedPassword);
+    const userExist = await User.findOne({ email });
 
-    const user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: hashedPassword,
+    if (userExist) {
+        res.status(400);
+        throw new Error('User already exists!')
+    }
+
+    // Hash password
+    const salt = await bcrypt.genSalt(Number(process.env.SALT_ROUNDS));
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const user = await User.create({
+        role,
+        firstName,
+        lastName,
+        email,
+        password: hashedPassword
     });
 
-    user.save()
-        .then(result => {
-            res.status(201).json({
-                message: 'User Created!',
-                result: result
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-
-
+    if (user) {
+        res.status(201).json({
+            name: `${user.firstName} ${user.lastName}`,
+            email: user.email,
+            token: generateToken(user._id),
+        });
+    } else {
+        res.status(400);
+        throw new Error('Invalid user data!')
+    }
 })
+
+// Generate JWT
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: '7d' });
+}
+
 
 module.exports = router;

@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaLock, FaAt, FaHouseUser, FaUserAlt } from 'react-icons/fa';
 
 import * as authService from '../../../services/authService';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 import InputBlock from '../InputBlock/InputBlock';
 
 import styles from './register.module.css';
 
 function Register() {
+    const { userLogin } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
@@ -20,7 +25,7 @@ function Register() {
         lastName: '',
         email: '',
         password: '',
-    })
+    });
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -28,9 +33,14 @@ function Register() {
         if (errors.firstName || errors.lastName || errors.email || errors.password) {
             return;
         }
-            
+
+        values['role'] = 'parent';
+        
         authService.register(values)
-            .then(user => console.log(user));
+            .then(authData => {
+                userLogin(authData);
+                navigate('/dashboard');
+            });
     }
 
     const changeHandler = (e) => {

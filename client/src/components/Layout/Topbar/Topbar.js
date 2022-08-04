@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { FaBars, FaSchool, FaRegEnvelope, FaRegBell, FaRegWindowClose } from "react-icons/fa";
+
+import { AuthContext } from '../../../contexts/AuthContext';
 
 import styles from './topbar.module.css';
 
@@ -8,6 +11,15 @@ function Topbar({
     setToggle,
     isToggled
 }) {
+    const { userLogout } = useContext(AuthContext)
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        userLogout();
+        navigate('/');
+    }
+
     return (
         <div className={styles['top-bar']}>
             <div className={styles['top-bar__logo-sec']}>
@@ -37,7 +49,7 @@ function Topbar({
 
                 <div className={styles['links']}>
                     <Link to="/">Profile</Link>
-                    <Link to="/">Logout</Link>
+                    <Link to="/" onClick={handleLogout}>Logout</Link>
                 </div>
             </div>
         </div>
