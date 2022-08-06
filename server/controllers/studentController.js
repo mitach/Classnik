@@ -45,7 +45,6 @@ router.post('/', async (req, res) => {
         res.status(201).json({
             _id: userStudent._id,
             email: userStudent.email,
-            password: userStudent.password,
         });
     } else {
         res.status(400);

@@ -9,6 +9,7 @@ import Auth from './components/Auth/Auth';
 import AdminLayout from './pages/Admin/Layout';
 import ParentLayout from './pages/Parent/Layout';
 import StudentLayout from './pages/Student/Layout';
+import TeacherLayout from './pages/Teacher/Layout';
 
 function App() {
     const [auth, setAuth] = useLocalStorage('auth', {});
@@ -53,6 +54,9 @@ function App() {
                     }
                     {role === 'student' && 
                         <Route path='/dashboard/*' element={<StudentLayout />} />
+                    }
+                    {role === 'teacher' && 
+                        <Route path='/dashboard/*' element={<TeacherLayout />} />
                     }
 
                 </Routes>

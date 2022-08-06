@@ -1,4 +1,4 @@
-export const generateStudentPassword = (firstName, lastName) => {
+export const generatePassword = (firstName, lastName) => {
     let first = firstName.toLowerCase();
     let last = lastName.toLowerCase();
 

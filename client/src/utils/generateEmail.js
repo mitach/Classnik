@@ -1,4 +1,4 @@
-export const generateStudentEmail = (firstName, lastName) => {
+export const generateEmail = (firstName, lastName) => {
     let first = firstName.toLowerCase();
     let last = lastName.toLowerCase();
     let random = (Math.random() * 1000).toFixed(0);

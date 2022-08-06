@@ -47,3 +47,21 @@ export const createStudent = async (studentInfo) => {
         throw new Error({ message: 'Unable to create student!' })
     }
 }
+
+export const createTeacher = async (teacherInfo) => {
+    const response = await fetch(baseUrl + '/teachers', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(teacherInfo),
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+        console.log(result);
+        return result;
+    } else {
+        throw new Error({ message: 'Unable to create teacher!' })
+    }
+}

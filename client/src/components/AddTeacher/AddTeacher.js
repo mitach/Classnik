@@ -1,23 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import * as adminService from '../../services/adminService';
 import { generateEmail } from '../../utils/generateEmail';
 import { generatePassword } from '../../utils/generatePassword';
 
-import styles from './add-student.module.css'
+import styles from './add-teacher.module.css'
 
-function AddStudent() {
-    const [classes, setClasses] = useState([]);
+function AddTeacher() {
     const [isEmpty, setIsEmpty] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    useEffect(() => {
-        adminService.getClasses()
-            .then(data => {
-                setClasses(data.classes);
-            });
-    }, []);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -26,21 +18,22 @@ function AddStudent() {
 
         values['email'] = generateEmail(values.firstName, values.lastName);
         values['password'] = generatePassword(values.firstName, values.lastName);
-        values['role'] = 'student';
+        values['role'] = 'teacher';
 
         setEmail(values.email);
         setPassword(values.password);
 
-        if (!values.firstName || !values.lastName) {
+        if (!values.subject || !values.firstName || !values.lastName) {
             setIsEmpty(true);
             return;
         } else {
             setIsEmpty(false);
         }
 
-        adminService.createStudent(values)
+        adminService.createTeacher(values)
             .then(result => console.log(result));
 
+        e.target.children[0].children[1].value = '';
         e.target.children[2].children[0].value = '';
         e.target.children[2].children[1].value = '';
     }
@@ -58,17 +51,15 @@ function AddStudent() {
             <div className={styles['form-wrapper']}>
                 <form onSubmit={onSubmit}>
                     <div>
-                        <p className={styles['label']}>Choose Student Class</p>
-                        <select name="studentClass" className={styles['select']}>
-                            {classes.map(x => <option value={x.name} key={x._id}>{x.name}</option>)}
-                        </select>
+                        <p className={styles['label']}>Subject</p>
+                        <input type="text" name="subject" className={styles['input-long']} placeholder='Subject' />
                     </div>
-                    <p className={styles['label']}>Names of the Student</p>
+                    <p className={styles['label']}>Names of the Teacher</p>
                     <div className={styles['input-div']}>
                         <input type="text" name="firstName" className={styles['input']} placeholder='First Name' />
                         <input type="text" name="lastName" className={styles['input']} placeholder='Last Name' />
                     </div>
-                    {isEmpty && <p className={styles['error']}>Plese enter first and last name</p>}
+                    {isEmpty && <p className={styles['error']}>Plese enter all fields</p>}
                     <button type="submit" className={styles['btn']}>Submit</button>
                 </form>
             </div>
@@ -76,4 +67,4 @@ function AddStudent() {
     );
 }
 
-export default AddStudent;
+export default AddTeacher;

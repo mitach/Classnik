@@ -3,14 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 
 import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
-
-import AddStudent from '../../components/AddStudent/AddStudent';
-import AddStudentClass from '../../components/AddStudentClass/AddStudentClass';
-import AddTeacher from '../../components/AddTeacher/AddTeacher';
+// import Diary from '../Diary/Diary';
+// import Tests from '../Tests/Tests';
 
 import styles from './layout.module.css';
 
-function AdminLayout(props) {
+function TeacherLayout(props) {
     const [toggleSidebar, setToggleSidebar] = useState(false);
 
     const setToggleSidebarOpposite = () => {
@@ -32,9 +30,8 @@ function AdminLayout(props) {
                 <Sidebar sidebarStyle={sidebarStyle} />
                 <div className={styles['router-body']} style={routerFilterStyle}>
                     <Routes>
-                        <Route path='/add-class' element={<AddStudentClass />} />
-                        <Route path='/add-teacher' element={<AddTeacher />} />
-                        <Route path='/add-student' element={<AddStudent />} />
+                        {/* <Route path='/diary' element={<Diary />} /> */}
+                        {/* <Route path='/tests' element={<Tests />} /> */}
                     </Routes>
                 </div>
             </div>
@@ -42,4 +39,4 @@ function AdminLayout(props) {
     );
 }
 
-export default AdminLayout;
+export default TeacherLayout;
