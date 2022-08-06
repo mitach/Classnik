@@ -3,6 +3,7 @@
   z-index: 2;
   position: absolute;
   width: 200px;
-  height: calc(100vh - 80px);
+  /* height: calc(100vh - 80px); */
+  height: 100%;
   transition: width 0.3s ease-in-out;
 }

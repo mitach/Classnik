@@ -8,8 +8,8 @@ function Sidebar({sidebarStyle}) {
     return (
         <div className={styles['sidebar-container']} style={sidebarStyle}>
             <LinkBlock icon={FaIdCard} text="Dashboard" to="/dashboard" />
+            <LinkBlock icon={FaChalkboardTeacher} text="Manage teachers" to="/dashboard/manage-teachers" />
             <LinkBlock icon={FaRegPlusSquare} text="Add class" to="/dashboard/add-class" />
-            <LinkBlock icon={FaChalkboardTeacher} text="Add teacher" to="/dashboard/add-teacher" />
             <LinkBlock icon={FaUserPlus} text="Add student" to="/dashboard/add-student" />
             <LinkBlock icon={FaCalendarAlt} text="Schedule" to="/dashboard/schedule" />
             <LinkBlock icon={FaMailBulk} text="Publications" to="/dashboard/publications" />

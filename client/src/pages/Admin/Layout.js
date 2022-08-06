@@ -6,7 +6,7 @@ import Sidebar from './Sidebar/Sidebar';
 
 import AddStudent from '../../components/AddStudent/AddStudent';
 import AddStudentClass from '../../components/AddStudentClass/AddStudentClass';
-import AddTeacher from '../../components/AddTeacher/AddTeacher';
+import ManageTeachers from '../../components/ManageTeachers/ManageTeachers';
 
 import styles from './layout.module.css';
 
@@ -32,8 +32,8 @@ function AdminLayout(props) {
                 <Sidebar sidebarStyle={sidebarStyle} />
                 <div className={styles['router-body']} style={routerFilterStyle}>
                     <Routes>
+                        <Route path='/manage-teachers' element={<ManageTeachers />} />
                         <Route path='/add-class' element={<AddStudentClass />} />
-                        <Route path='/add-teacher' element={<AddTeacher />} />
                         <Route path='/add-student' element={<AddStudent />} />
                     </Routes>
                 </div>

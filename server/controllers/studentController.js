@@ -22,12 +22,6 @@ router.post('/', async (req, res) => {
         throw new Error('Student already exists!');
     }
 
-    const student = await Student.create({
-        firstName,
-        lastName,
-        studentClass,
-    });
-
     const salt = await bcrypt.genSalt(Number(process.env.SALT_ROUNDS));
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -37,6 +31,13 @@ router.post('/', async (req, res) => {
         lastName,
         email,
         password: hashedPassword,
+    });
+    
+    const student = await Student.create({
+        firstName,
+        lastName,
+        studentClass,
+        userId: userStudent._id,
     });
 
     await StudentClass.findOneAndUpdate({ name: studentClass }, {$push: {students: student._id}});

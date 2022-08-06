@@ -1,15 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import * as adminService from '../../services/adminService';
+import * as teacherService from '../../services/teacherService';
 import { generateEmail } from '../../utils/generateEmail';
 import { generatePassword } from '../../utils/generatePassword';
 
-import styles from './add-teacher.module.css'
+import styles from './manage-teachers.module.css'
 
-function AddTeacher() {
+function ManageTeachers() {
     const [isEmpty, setIsEmpty] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [teacherCount, setTeacherCount] = useState();
+
+    useEffect(() => {
+        teacherService.getCount()
+            .then(count => {
+                setTeacherCount(count);
+            });
+    }, []);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -30,8 +39,10 @@ function AddTeacher() {
             setIsEmpty(false);
         }
 
-        adminService.createTeacher(values)
-            .then(result => console.log(result));
+        teacherService.create(values)
+            .then(result => {
+                setTeacherCount(teacherCount + 1);
+            });
 
         e.target.children[0].children[1].value = '';
         e.target.children[2].children[0].value = '';
@@ -63,8 +74,31 @@ function AddTeacher() {
                     <button type="submit" className={styles['btn']}>Submit</button>
                 </form>
             </div>
-        </div>
+
+            <div className={styles['info']}>
+                Current Teachers: <span className={styles['info-num']}>{teacherCount}</span>
+            </div>
+
+            <div>
+                <table className={styles['table']}>
+                    <thead>
+                        <tr>
+                            <th>Teacher</th>
+                            <th>Subject</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alfreds Futterkiste</td>
+                            <td>History</td>
+                            <td className={styles['actions']}><Link to='/' className={styles['del-btn']}>X</Link></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div >
     );
 }
 
-export default AddTeacher;
+export default ManageTeachers;
