@@ -5,6 +5,8 @@ import * as teacherService from '../../services/teacherService';
 import { generateEmail } from '../../utils/generateEmail';
 import { generatePassword } from '../../utils/generatePassword';
 
+import TeacherList from './TeacherList/TeacherList';
+
 import styles from './manage-teachers.module.css'
 
 function ManageTeachers() {
@@ -12,7 +14,7 @@ function ManageTeachers() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [teachers, setTeachers] = useState([]);
-    const [teacherCount, setTeacherCount] = useState();
+    const [teacherCount, setTeacherCount] = useState(0);
 
     useEffect(() => {
         teacherService.getCount()
@@ -98,29 +100,8 @@ function ManageTeachers() {
                 Current Teachers: <span className={styles['info-num']}>{teacherCount}</span>
             </div>
 
-            <div>
-                <table className={styles['table']}>
-                    <thead>
-                        <tr>
-                            <th>Teacher</th>
-                            <th>Subject</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {teachers.map(x => {
-                            return (
-                                <tr key={x._id}>
-                                    <td>{x.firstName} {x.lastName}</td>
-                                    <td>{x.subject}</td>
-                                    <td className={styles['actions']}><button id={x._id} onClick={delTeacherHandler} className={styles['del-btn']}>X</button></td>
-                                </tr>
-                            );
-                        })}
-
-                    </tbody>
-                </table>
-            </div>
+            <TeacherList teachers={teachers} delTeacherHandler={delTeacherHandler} />
+            
         </div >
     );
 }

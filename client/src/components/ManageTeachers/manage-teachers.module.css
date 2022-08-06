@@ -92,7 +92,7 @@
 }
 
 .info {
-    margin: 20px;
+    margin: 0 20px 20px 20px;
     background-color: lightgray;
     font-weight: 600;
     text-align: center;
@@ -105,38 +105,3 @@
     font-weight: 700;
 }
 
-.table {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-th {
-    background-color: rgb(102, 161, 157);
-}
-
-td {
-    background-color: rgb(131, 206, 202);
-    height: 30px;
-    text-align: center;
-}
-
-.actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.del-btn {
-    height: 20px;
-    cursor: pointer;
-    padding: 0 10px;
-    border: none;
-    color: white;
-    border-radius: 3px;
-    background-color: rgb(142, 71, 71);
-    text-decoration: none;
-}
-
-tr, td,  th {
-    border: 1px solid black;
-}
