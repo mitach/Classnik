@@ -6,17 +6,25 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const Teacher = require('../models/Teacher');
 
+router.get('/', async (req, res) => {
+    const teachers = await Teacher.find();
+    
+    if (teachers) {
+        res.status(201).json({ teachers });
+    }
+});
+
 router.get('/count', async (req, res) => {
     const count = await Teacher.count();
-
-    res.status(201).json({ count });
+    if (count) {
+        res.status(201).json({ count });
+    } else {
+        res.status(201).json({ count: 0 });
+    }
 });
 
 router.post('/', async (req, res) => {
     const { firstName, lastName, role, subject, email, password } = req.body;
-
-    let count = await Teacher.count();
-    console.log(count);
 
     if (!firstName || !lastName || !subject) {
         res.status(400);
@@ -50,14 +58,23 @@ router.post('/', async (req, res) => {
 
     if (teacher && userTeacher) {
         res.status(201).json({
-            _id: userTeacher._id,
-            email: userTeacher.email,
+            _id: teacher._id,
+            firstName: teacher.firstName,
+            lastName: teacher.lastName,
+            subject: teacher.subject,
         });
     } else {
         res.status(400);
         throw new Error('Invalid teacher data!');
     }
+});
 
+router.delete('/:id', async (req, res) => {
+    const teacher = await Teacher.findById(req.params.id);
+    await User.findByIdAndDelete(teacher.userId);
+    await Teacher.findByIdAndDelete(req.params.id);
+
+    res.status(201).json({id: req.params.id});
 });
 
 module.exports = router;

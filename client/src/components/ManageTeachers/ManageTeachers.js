@@ -11,12 +11,18 @@ function ManageTeachers() {
     const [isEmpty, setIsEmpty] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [teachers, setTeachers] = useState([]);
     const [teacherCount, setTeacherCount] = useState();
 
     useEffect(() => {
         teacherService.getCount()
             .then(count => {
                 setTeacherCount(count);
+            });
+
+        teacherService.getAll()
+            .then(teachersArr => {
+                setTeachers(teachersArr);
             });
     }, []);
 
@@ -42,6 +48,10 @@ function ManageTeachers() {
         teacherService.create(values)
             .then(result => {
                 setTeacherCount(teacherCount + 1);
+                setTeachers(state => [
+                    ...state,
+                    result
+                ]);
             });
 
         e.target.children[0].children[1].value = '';
@@ -49,16 +59,25 @@ function ManageTeachers() {
         e.target.children[2].children[1].value = '';
     }
 
+    const delTeacherHandler = (e) => {
+        teacherService.remove(e.target.id)
+            .then(removedTeacherId => {
+                setTeacherCount(teacherCount - 1);
+                setTeachers(state => state.filter(x => x._id !== removedTeacherId));
+            });
+    }
+
     return (
         <div className={styles['container']}>
+
             {email && password && !isEmpty &&
                 <div className={styles['credentials-container']}>
                     <p className={styles['bolded']}>Generated Credentials:</p>
                     <p>Email: <span>{email}</span></p>
                     <p>Password: <span>{password}</span></p>
                 </div>
-
             }
+
             <div className={styles['form-wrapper']}>
                 <form onSubmit={onSubmit}>
                     <div>
@@ -89,11 +108,16 @@ function ManageTeachers() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Alfreds Futterkiste</td>
-                            <td>History</td>
-                            <td className={styles['actions']}><Link to='/' className={styles['del-btn']}>X</Link></td>
-                        </tr>
+                        {teachers.map(x => {
+                            return (
+                                <tr key={x._id}>
+                                    <td>{x.firstName} {x.lastName}</td>
+                                    <td>{x.subject}</td>
+                                    <td className={styles['actions']}><button id={x._id} onClick={delTeacherHandler} className={styles['del-btn']}>X</button></td>
+                                </tr>
+                            );
+                        })}
+
                     </tbody>
                 </table>
             </div>
