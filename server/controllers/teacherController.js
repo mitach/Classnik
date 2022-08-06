@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
 
 router.get('/count', async (req, res) => {
     const count = await Teacher.count();
+    
     if (count) {
         res.status(201).json({ count });
     } else {

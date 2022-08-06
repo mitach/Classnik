@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import * as adminService from '../../services/adminService';
+import * as classService from '../../services/classService';
 
 import styles from './add-student-class.module.css';
 
@@ -10,7 +10,7 @@ function AddStudentClass() {
     const [isEmpty, setIsEmpty] = useState(false);
 
     useEffect(() => {
-        adminService.getClasses()
+        classService.getClasses()
             .then(data => {
                 setClasses(data.classes);
             });
@@ -29,7 +29,7 @@ function AddStudentClass() {
             setIsEmpty(false);
         }
 
-        adminService.createClass(studentClass)
+        classService.createClass(studentClass)
             .then(result => {
                 setClasses(state => [
                     ...state,

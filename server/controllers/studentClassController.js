@@ -14,6 +14,16 @@ router.get('/', async (req, res) => {
         res.status(400);
         throw new Error('Invalid student class data!');
     }
+});
+
+router.get('/count', async (req, res) => {
+    const count = await StudentClass.count();
+        
+    if (count) {
+        res.status(201).json({ count });
+    } else {
+        res.status(201).json({ count: 0 });
+    }
 })
 
 router.post('/', async (req, res) => {
@@ -44,7 +54,6 @@ router.post('/', async (req, res) => {
         res.status(400);
         throw new Error('Invalid student class data!');
     }
-
-})
+});
 
 module.exports = router;

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import * as teacherService from '../../services/teacherService';
 import { generateEmail } from '../../utils/generateEmail';

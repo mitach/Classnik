@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import * as adminService from '../../services/adminService';
+import * as studentService from '../../services/studentService';
+import * as classService from '../../services/classService'
 import { generateEmail } from '../../utils/generateEmail';
 import { generatePassword } from '../../utils/generatePassword';
 
@@ -13,7 +14,7 @@ function AddStudent() {
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        adminService.getClasses()
+        classService.getClasses()
             .then(data => {
                 setClasses(data.classes);
             });
@@ -38,10 +39,9 @@ function AddStudent() {
             setIsEmpty(false);
         }
 
-        adminService.createStudent(values)
-            .then(result => console.log(result));
+        studentService.create(values)
 
-        e.target.children[2].children[0].value = '';
+        e.target.children[2].children[0].value ='';
         e.target.children[2].children[1].value = '';
     }
 

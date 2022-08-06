@@ -7,6 +7,16 @@ const Student = require('../models/Student');
 const User = require('../models/User');
 const StudentClass = require('../models/StudentClass');
 
+router.get('/count', async (req, res) => {
+    const count = await Student.count();
+
+    if (count) {
+        res.status(201).json({ count });
+    } else {
+        res.status(201).json({ count: 0 });
+    }
+})
+
 router.post('/', async (req, res) => {
     const { role, firstName, lastName, studentClass, email, password } = req.body;
 
@@ -32,7 +42,7 @@ router.post('/', async (req, res) => {
         email,
         password: hashedPassword,
     });
-    
+
     const student = await Student.create({
         firstName,
         lastName,
@@ -40,7 +50,7 @@ router.post('/', async (req, res) => {
         userId: userStudent._id,
     });
 
-    await StudentClass.findOneAndUpdate({ name: studentClass }, {$push: {students: student._id}});
+    await StudentClass.findOneAndUpdate({ name: studentClass }, { $push: { students: student._id } });
 
     if (student && userStudent) {
         res.status(201).json({

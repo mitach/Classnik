@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
 
+import AdminDashboard from '../../components/AdminDashboard/AdminDashboard';
 import AddStudent from '../../components/AddStudent/AddStudent';
 import AddStudentClass from '../../components/AddStudentClass/AddStudentClass';
 import ManageTeachers from '../../components/ManageTeachers/ManageTeachers';
@@ -32,6 +33,7 @@ function AdminLayout(props) {
                 <Sidebar sidebarStyle={sidebarStyle} />
                 <div className={styles['router-body']} style={routerFilterStyle}>
                     <Routes>
+                        <Route path='/' element={<AdminDashboard />} />
                         <Route path='/manage-teachers' element={<ManageTeachers />} />
                         <Route path='/add-class' element={<AddStudentClass />} />
                         <Route path='/add-student' element={<AddStudent />} />
