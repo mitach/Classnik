@@ -22,7 +22,7 @@ function AddStudentClass() {
         const studentClass = Object.fromEntries(new FormData(e.target));
 
 
-        if (studentClass.name == '') {
+        if (!studentClass.name) {
             setIsEmpty(true);
             return;
         } else {

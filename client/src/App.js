@@ -5,10 +5,10 @@ import { useLocalStorage } from './hooks/useLocalStorage';
 import { AuthContext } from './contexts/AuthContext';
 
 import Auth from './components/Auth/Auth';
-// import Layout from "./components/Layout/Layout";
 
 import AdminLayout from './pages/Admin/Layout';
 import ParentLayout from './pages/Parent/Layout';
+import StudentLayout from './pages/Student/Layout';
 
 function App() {
     const [auth, setAuth] = useLocalStorage('auth', {});
@@ -50,6 +50,9 @@ function App() {
                     }
                     {role === 'parent' && 
                         <Route path='/dashboard/*' element={<ParentLayout />} />
+                    }
+                    {role === 'student' && 
+                        <Route path='/dashboard/*' element={<StudentLayout />} />
                     }
 
                 </Routes>
