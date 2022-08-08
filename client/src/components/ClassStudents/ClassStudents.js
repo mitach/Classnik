@@ -3,19 +3,17 @@ import { Link, useParams } from 'react-router-dom';
 import { FaArrowAltCircleLeft, FaZhihu } from 'react-icons/fa';
 
 import * as teacherService from '../../services/teacherService';
+import * as gradeService from '../../services/gradeService';
 import * as studentService from '../../services/studentService';
 import * as classService from '../../services/classService';
-import { TeacherContext } from '../../contexts/TeacherContext';
+
 import { AuthContext } from '../../contexts/AuthContext';
 import { styleDecider } from '../../utils/styleDeciders';
-
-import uniqid from 'uniqid';
 
 import styles from './class-students.module.css';
 
 function ClassStudents() {
     const [subject, setSubject] = useState('');
-    const { teacher } = useContext(TeacherContext);
     const { user } = useContext(AuthContext)
     const { id } = useParams();
     const [students, setStudents] = useState([]);
@@ -30,23 +28,41 @@ function ClassStudents() {
             .then(result => {
                 setStudents(result);
             });
+
     }, []);
 
     const evaluateHandler = (e) => {
         const id = e.target.parentElement.parentElement.id;
-        const data = { grade: e.target.textContent, subject: subject };
+        const data = { grade: e.target.textContent, subject: subject, id };
 
-        studentService.addGrade(id, data)
+        gradeService.add(data)
             .then(result => {
-                setStudents(state => state.map(x => x._id == result._id ? x.grades[subject] = result.grades : x.grades[subject]));
-                window.location.reload();
-            });
+                console.log(result);
+                console.log()
+                setStudents(state => {
+                    state.map(x => x._id == result.studentId ? x.grades?.[subject].push({ grade: result.grade, _id: result.gradeId }) : x.grades[subject])
+                    // state.filter(x => x._id != result.studentId)
+                });
+            })
+
+        // studentService.addGrade(id, data)
+        //     .then(result => {
+        //         setStudents(state => state.map(x => x._id == result._id ? x.grades[subject] = result.grades : x.grades[subject]));
+        //         window.location.reload();
+        //     });
+
+
     }
 
     const GradesElement = ({ grades }) => {
+        if (grades) {
+            console.log(grades);
+        } else {
+            console.log('No grades yet')
+        }
         return (
             <>
-                {grades?.map((grade, i) => <span className={styles[`${styleDecider(grade)}`]} key={i}>{grade}</span>)}
+                {grades?.map((gradeInfo) => <span className={styles[`${styleDecider(gradeInfo.grade)}`]} key={gradeInfo._id}>{gradeInfo.grade}</span>)}
             </>
         );
     }
@@ -68,10 +84,11 @@ function ClassStudents() {
                         </tr>
                     </thead>
                     <tbody>
-                        {students.map(x => (
+                        {students?.map(x => (
                             <tr key={x._id} id={x._id}>
                                 <td className={styles['td-name']}>{x.firstName} {x.lastName}</td>
-                                <td className={styles['td-grades']}>{<GradesElement grades={x.grades[subject]} />}</td>
+                                {/* <td className={styles['td-grades']}>ss</td> */}
+                                <td className={styles['td-grades']}>{<GradesElement grades={x?.grades?.[subject]} />}</td>
                                 <td className={styles['td-evaluate']}>
                                     <button onClick={evaluateHandler} className={styles['six']}>6</button>
                                     <button onClick={evaluateHandler} className={styles['five']}>5</button>
