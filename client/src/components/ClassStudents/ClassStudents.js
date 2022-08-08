@@ -7,7 +7,10 @@ import * as gradeService from '../../services/gradeService';
 import * as studentService from '../../services/studentService';
 import * as classService from '../../services/classService';
 
+import StudentRow from './StudentRow/StudentRow';
+
 import { AuthContext } from '../../contexts/AuthContext';
+
 import { styleDecider } from '../../utils/styleDeciders';
 
 import styles from './class-students.module.css';
@@ -54,19 +57,6 @@ function ClassStudents() {
 
     }
 
-    const GradesElement = ({ grades }) => {
-        if (grades) {
-            console.log(grades);
-        } else {
-            console.log('No grades yet')
-        }
-        return (
-            <>
-                {grades?.map((gradeInfo) => <span className={styles[`${styleDecider(gradeInfo.grade)}`]} key={gradeInfo._id}>{gradeInfo.grade}</span>)}
-            </>
-        );
-    }
-
     return (
         <div>
             <header className={styles['header']}>
@@ -84,10 +74,9 @@ function ClassStudents() {
                         </tr>
                     </thead>
                     <tbody>
-                        {students?.map(x => (
+                        {/* {students && students.map(x => (
                             <tr key={x._id} id={x._id}>
                                 <td className={styles['td-name']}>{x.firstName} {x.lastName}</td>
-                                {/* <td className={styles['td-grades']}>ss</td> */}
                                 <td className={styles['td-grades']}>{<GradesElement grades={x?.grades?.[subject]} />}</td>
                                 <td className={styles['td-evaluate']}>
                                     <button onClick={evaluateHandler} className={styles['six']}>6</button>
@@ -97,7 +86,9 @@ function ClassStudents() {
                                     <button onClick={evaluateHandler} className={styles['two']}>2</button>
                                 </td>
                             </tr>
-                        ))}
+                        ))} */}
+
+                        {students.map(student => <StudentRow key={student._id} student={student} subject={subject} /> )}
                     </tbody>
                 </table>
             </section>
