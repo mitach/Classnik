@@ -2,10 +2,10 @@ const baseUrl = 'http://localhost:8080/api/teachers';
 
 export const getMe = async (id) => {
     const response = await fetch(baseUrl + `/${id}`);
-    
+
     if (response.ok) {
         const result = await response.json();
-        
+
         return result;
     } else {
         throw new Error({ message: 'Unable to get teacher!' });
