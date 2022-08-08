@@ -1,5 +1,17 @@
 const baseUrl = 'http://localhost:8080/api/teachers';
 
+export const getMe = async (id) => {
+    const response = await fetch(baseUrl + `/${id}`);
+    
+    if (response.ok) {
+        const result = await response.json();
+        
+        return result;
+    } else {
+        throw new Error({ message: 'Unable to get teacher!' });
+    }
+}
+
 export const getAll = async () => {
     const response = await fetch(baseUrl);
 
@@ -8,7 +20,7 @@ export const getAll = async () => {
 
         return result.teachers;
     } else {
-        throw new Error({ message: 'Unable to get teachers!' })
+        throw new Error({ message: 'Unable to get teachers!' });
     }
 }
 
@@ -20,7 +32,7 @@ export const getCount = async () => {
 
         return result.count;
     } else {
-        throw new Error({ message: 'Unable to get count of teachers!' })
+        throw new Error({ message: 'Unable to get count of teachers!' });
     }
 }
 
@@ -38,7 +50,7 @@ export const create = async (teacherInfo) => {
 
         return result;
     } else {
-        throw new Error({ message: 'Unable to create teacher!' })
+        throw new Error({ message: 'Unable to create teacher!' });
     }
 }
 
@@ -55,6 +67,6 @@ export const remove = async (teacherId) => {
 
         return result.id;
     } else {
-        throw new Error({ message: 'Unable to delete teacher!' })
+        throw new Error({ message: 'Unable to delete teacher!' });
     }
 }

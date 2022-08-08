@@ -1,0 +1,101 @@
+.header {
+    width: 100%;
+    height: 60px;
+    background-color: rgb(140, 145, 198);
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    margin-top: 10px;
+    display: block;
+    font-size: 36px;
+    padding: 0 20px;
+    text-decoration: none;
+    color: rgb(160, 224, 64);
+}
+
+.td-evaluate {
+    background-color: rgb(78, 196, 147);
+    display: flex;
+    height: 35px;
+}
+
+.td-name {
+    background-color: rgb(154, 157, 185);
+    width: 30%;
+}
+
+.td-grades {
+    background-color: rgb(154, 157, 185);
+    width: 70%;
+    text-align: start;
+}
+
+.six {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(106, 177, 0);
+}
+
+.five {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(68, 134, 226);
+}
+
+.four {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(214, 189, 1);
+}
+
+.three {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(216, 160, 27);
+}
+
+.two {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(250, 107, 35);
+}
+
+.grade {
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: red;
+    margin: 2px;
+}

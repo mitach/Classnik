@@ -8,7 +8,7 @@ const Teacher = require('../models/Teacher');
 
 router.get('/', async (req, res) => {
     const teachers = await Teacher.find();
-    
+
     if (teachers) {
         res.status(201).json({ teachers });
     }
@@ -16,11 +16,23 @@ router.get('/', async (req, res) => {
 
 router.get('/count', async (req, res) => {
     const count = await Teacher.count();
-    
+
     if (count) {
         res.status(201).json({ count });
     } else {
         res.status(201).json({ count: 0 });
+    }
+});
+
+router.get('/:id', async (req, res) => {
+    const user = await User.findById(req.params.id);
+    const teacher = await Teacher.find({ firstName: user.firstName, lastName: user.lastName });
+
+    if (teacher) {
+        res.status(201).json(teacher[0]);
+    } else {
+        res.status(400);
+        throw new Error('Invalid teacher data!');
     }
 });
 
@@ -75,7 +87,7 @@ router.delete('/:id', async (req, res) => {
     await User.findByIdAndDelete(teacher.userId);
     await Teacher.findByIdAndDelete(req.params.id);
 
-    res.status(201).json({id: req.params.id});
+    res.status(201).json({ id: req.params.id });
 });
 
 module.exports = router;

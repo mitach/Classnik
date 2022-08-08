@@ -29,3 +29,21 @@ export const create = async (studentInfo) => {
         throw new Error({ message: 'Unable to create student!' })
     }
 }
+
+export const addGrade = async (id, data) => {
+    const response = await fetch(baseUrl + `/${id}/add-grade`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+
+        return result;
+    } else {
+        throw new Error({ message: 'Unable to create student!' })
+    }
+}

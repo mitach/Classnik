@@ -24,6 +24,16 @@ export const getClasses = async () => {
     }
 }
 
+export const getClassStudents = async (id) => {
+    const response = await fetch(baseUrl + `/${id}`);
+
+    if (response.ok) {
+        const result = await response.json();
+
+        return result.students;
+    }
+}
+
 export const createClass = async (classInfo) => {
     const response = await fetch(baseUrl, {
         method: 'POST',

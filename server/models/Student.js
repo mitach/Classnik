@@ -5,9 +5,10 @@ const studentSchema = new mongoose.Schema({
     lastName: {type: String, required: true},
     studentClass: {type: String, required: true},
     userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    grades: [],
+    grades: {type: mongoose.SchemaTypes.Mixed, default: {}},
 }, {
     timestamps: true,
+    minimize: false,
 });
 
 const Student = mongoose.model('Student', studentSchema);

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const StudentClass = require('../models/StudentClass');
+const Student = require('../models/Student');
 
 router.get('/', async (req, res) => {
     const classes = await StudentClass.find();
@@ -24,7 +25,23 @@ router.get('/count', async (req, res) => {
     } else {
         res.status(201).json({ count: 0 });
     }
-})
+});
+
+router.get('/:id', async (req, res) => {
+    const studentClass = await StudentClass.findById(req.params.id);
+    const studentsArr = [];
+
+    for (let student of studentClass.students) {
+        const studentInfo = await Student.findById(student);
+        studentsArr.push(studentInfo);
+    }
+
+    if (studentsArr.length > 0) {
+        res.status(201).json({
+            students: studentsArr,
+        });
+    }
+});
 
 router.post('/', async (req, res) => {
     const { name } = req.body;

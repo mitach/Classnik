@@ -48,6 +48,7 @@ router.post('/', async (req, res) => {
         lastName,
         studentClass,
         userId: userStudent._id,
+        grades: {},
     });
 
     await StudentClass.findOneAndUpdate({ name: studentClass }, { $push: { students: student._id } });
@@ -61,6 +62,37 @@ router.post('/', async (req, res) => {
         res.status(400);
         throw new Error('Invalid student data!');
     }
+});
+
+router.put('/:id/add-grade', async (req, res) => {
+    const { grade, subject } = req.body
+    const student = await Student.findById(req.params.id);
+
+    if (student.grades[subject]) {
+        student.grades[subject].push(grade);
+    } else {
+        student.grades[subject] = [grade];
+    }
+
+    // let exist = false;
+
+    // for (let item of student.grades) {
+    //     if (item[subject]) {
+    //         exist = true;
+    //         item[subject].push(grade);
+    //     }
+    // }
+
+    // const obj = {};
+
+    // if (!exist) {
+    //     obj[subject] = [grade];
+    //     student.grades.push(obj);
+    // }
+
+    const newStudent = await Student.findByIdAndUpdate(req.params.id, student);
+
+    res.status(201).json({ _id: newStudent._id, grades: student.grades[subject] });
 });
 
 module.exports = router;

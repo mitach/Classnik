@@ -66,6 +66,7 @@ router.post('/login', async (req, res) => {
             role: user.role,
             name: `${user.firstName} ${user.lastName}`,
             email: user.email,
+            _id: user._id,
             token: generateToken(user._id),
         });
     } else {
