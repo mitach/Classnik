@@ -39,7 +39,18 @@ router.post('/', async (req, res) => {
         res.status(400);
         throw new Error('Invalid grade data!')
     }
+});
 
+router.delete('/:id', async (req, res) => {
+    const grade = await Grade.findById(req.params.id);
+    const student = await Student.findById(grade.studentId);
+
+    student.grades[grade.subject] = student.grades[grade.subject].filter(x => x._id.toString() !== grade._id.toString());
+
+    await Student.findByIdAndUpdate(student._id, student);
+    await Grade.findByIdAndDelete(req.params.id);
+
+    res.status(201).json(student);
 });
 
 module.exports = router;

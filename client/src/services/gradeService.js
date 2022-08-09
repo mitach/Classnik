@@ -17,3 +17,20 @@ export const add = async (data) => {
         throw new Error({ message: 'Unable to create teacher!' });
     }
 }
+
+export const remove = async (gradeId) => {
+    const response = await fetch(baseUrl + `/${gradeId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+
+        return result;
+    } else {
+        throw new Error({ message: 'Unable to create teacher!' });
+    }
+}

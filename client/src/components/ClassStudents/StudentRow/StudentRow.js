@@ -26,20 +26,17 @@ function StudentRow({
                         ...state.grades[subject] = [{ grade: result.grade, _id: result.gradeId }],
                     }));
                 }
-
             });
-        
-        console.log('StudentRow ', studentInfo);
     }
 
     return (
         <tr key={student._id} id={student._id}>
             <td className={styles['td-name']}>{student.firstName} {student.lastName}</td>
-            {student.grades[subject]
+            {!student.grades[subject] || student.grades[subject].length == 0
                 ?
-                <td className={styles['td-grades']}>{student.grades[subject].map(x => <GradeItem key={x._id} gradeInfo={x} />)}</td>
-                :
                 <td className={styles['td-grades']}>No grades yet</td>
+                :
+                <td className={styles['td-grades']}>{studentInfo.grades[subject].map(x => <GradeItem key={x._id} gradeInfo={x} subject={subject} setStudentInfo={setStudentInfo} />)}</td>
             }
             <td className={styles['td-evaluate']}>
                 <button onClick={addGradeHandler} className={styles['six']}>6</button>

@@ -8,6 +8,7 @@
     margin: 2px;
     color: white;
     background-color: rgb(106, 177, 0);
+    user-select: none;
 }
 
 .five {
@@ -20,6 +21,7 @@
     margin: 2px;
     color: white;
     background-color: rgb(68, 134, 226);
+    user-select: none;
 }
 
 .four {
@@ -32,6 +34,7 @@
     margin: 2px;
     color: white;
     background-color: rgb(214, 189, 1);
+    user-select: none;
 }
 
 .three {
@@ -44,6 +47,7 @@
     margin: 2px;
     color: white;
     background-color: rgb(216, 160, 27);
+    user-select: none;
 }
 
 .two {
@@ -56,4 +60,5 @@
     margin: 2px;
     color: white;
     background-color: rgb(250, 107, 35);
+    user-select: none;
 }
