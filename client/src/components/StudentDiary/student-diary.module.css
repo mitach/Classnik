@@ -1,0 +1,89 @@
+.no-grades {
+    padding: 50px;
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.td-average {
+    background-color: rgb(78, 196, 147);
+    font-weight: bold;
+    color: white;
+}
+
+.td-subject {
+    background-color: rgb(154, 157, 185);
+    width: 20%;
+    font-weight: bold;
+}
+
+.td-grades {
+    background-color: rgb(154, 157, 185);
+    width: 80%;
+    text-align: start;
+}
+
+.six {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(106, 177, 0);
+    user-select: none;
+}
+
+.five {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(68, 134, 226);
+    user-select: none;
+}
+
+.four {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(214, 189, 1);
+    user-select: none;
+}
+
+.three {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(216, 160, 27);
+    user-select: none;
+}
+
+.two {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 2px;
+    color: white;
+    background-color: rgb(250, 107, 35);
+    user-select: none;
+}

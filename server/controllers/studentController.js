@@ -15,7 +15,19 @@ router.get('/count', async (req, res) => {
     } else {
         res.status(201).json({ count: 0 });
     }
-})
+});
+
+router.get('/:id', async (req, res) => {
+    const user = await User.findById(req.params.id);
+    const student = await Student.findOne({ email: user.email });
+
+    if (student) {
+        res.status(201).json(student);
+    } else {
+        res.status(400);
+        throw new Error('Invalid student data!');
+    }
+});
 
 router.post('/', async (req, res) => {
     const { role, firstName, lastName, studentClass, email, password } = req.body;
@@ -47,6 +59,7 @@ router.post('/', async (req, res) => {
         firstName,
         lastName,
         studentClass,
+        email,
         userId: userStudent._id,
         grades: {},
     });
