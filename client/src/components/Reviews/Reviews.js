@@ -15,11 +15,12 @@ function Reviews() {
             .then(result => {
                 setReviews(result);
             })
-    }, []);
+    }, [user]);
 
     return (
         <div className={styles['wrapper']}>
             {reviews.map(x => <ReviewItem key={x._id} review={x} />)}
+            {reviews.length === 0 && <p className={styles['no-grades']}>No Reviews yet</p>}
         </div>
     );
 }

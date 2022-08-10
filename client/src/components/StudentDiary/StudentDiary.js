@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { FaBook } from 'react-icons/fa'
 
 import * as studentService from '../../services/studentService';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -26,7 +27,7 @@ function StudentDiary() {
                 setGrades(result.grades);
                 setSubjects(subjectsArr);
             })
-    }, []);
+    }, [user]);
 
     return (
         <>
@@ -42,7 +43,7 @@ function StudentDiary() {
                     <tbody>
                         {subjects.map(x => (
                             <tr key={x.subject}>
-                                <td className={styles['td-subject']}>{x.subject}</td>
+                                <td className={styles['td-subject']}><FaBook /> {x.subject}</td>
                                 <td className={styles['td-grades']}>{grades[x.subject].map(gradeInfo => <span className={styles[`${styleDecider(gradeInfo.grade)}`]} key={gradeInfo._id}>{gradeInfo.grade}</span>)}</td>
                                 <td className={styles['td-average']}>{x.avg}</td>
                             </tr>
@@ -50,7 +51,7 @@ function StudentDiary() {
                     </tbody>
                 </table>
             }
-            {subjects.length == 0 && <p className={styles['no-grades']}>No Grades yet</p>}
+            {subjects.length === 0 && <p className={styles['no-grades']}>No Grades yet</p>}
         </>
     );
 }

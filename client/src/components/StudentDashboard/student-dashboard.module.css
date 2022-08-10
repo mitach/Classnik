@@ -23,7 +23,7 @@
     justify-content: space-between;
     align-items: center;
     width: 25%;
-    height: 80%;
+    height: 100%;
     background-color: rgb(81, 151, 236);
     border-radius: 3px;
 }
@@ -36,11 +36,23 @@
     justify-content: space-between;
     align-items: center;
     width: 25%;
-    height: 80%;
+    height: 100%; 
     background-color: rgb(102, 227, 173);
     border-radius: 3px;
 }
 
+.reviews-info {
+    margin-left: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+    background-color: rgb(227, 196, 102);
+    border-radius: 3px;
+}
 
 .info-title {
     text-align: center;
@@ -76,4 +88,12 @@
     color: white;
     padding: 10px 25px;
     background-color: rgb(141, 232, 193);
+}
+
+.link-orange {
+    margin: 0 20px;
+    text-decoration: none;
+    color: white;
+    padding: 10px 25px;
+    background-color: rgb(229, 206, 137);
 }

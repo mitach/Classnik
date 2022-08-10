@@ -6,6 +6,7 @@ import { AuthContext } from './contexts/AuthContext';
 
 import Auth from './components/Auth/Auth';
 
+import HomePage from './components/HomePage/HomePage';
 import AdminLayout from './pages/Admin/Layout';
 import ParentLayout from './pages/Parent/Layout';
 import StudentLayout from './pages/Student/Layout';
@@ -42,7 +43,7 @@ function App() {
         <AuthContext.Provider value={{ user: auth, userLogin, userLogout }}>
             <div className="classnik-app">
                 <Routes>
-                    <Route path='/' element={loggedIn ? <Navigate to='/dashboard' /> : <Auth />} />
+                    <Route path='/' element={loggedIn ? <Navigate to='/dashboard' /> : <HomePage />} />
                     <Route path='/login' element={loggedIn ? <Navigate to='/dashboard' /> : <Auth />} />
                     <Route path='/register' element={loggedIn ? <Navigate to='/dashboard' /> : <Auth />} />
 

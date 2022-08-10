@@ -3,3 +3,11 @@
     gap: 20px;
     flex-wrap: wrap;
 }
+
+.no-grades {
+    padding: 50px;
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0 auto;
+}

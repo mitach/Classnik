@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 
 import * as gradeService from '../../services/gradeService';
+import * as reviewService from '../../services/reviewService';
 
 import styles from './student-dashboard.module.css';
 
@@ -11,6 +12,7 @@ function StudentDashboard() {
 
     const [gradesCount, setGradesCount] = useState(0);
     const [averageGrade, setAverageGrade] = useState(0);
+    const [reviewsCount, setreviewsCount] = useState(0);
 
     useEffect(() => {
         gradeService.getCountForStudent(user._id)
@@ -18,7 +20,13 @@ function StudentDashboard() {
                 setGradesCount(result.count);
                 setAverageGrade(result.average);
             });
-    }, []);
+
+        reviewService.getStudentReviews(user._id)
+            .then(result => {
+                setreviewsCount(result.length);
+            })
+        
+    }, [user]);
 
 
     return (
@@ -33,6 +41,7 @@ function StudentDashboard() {
                         <Link to='diary' className={styles['link-blue']}>See all</Link>
                     </div>
                 </div>
+
                 <div className={styles['average-info']}>
                     <div>
                         <p className={styles['info-title']}>Average grade:</p>
@@ -40,6 +49,16 @@ function StudentDashboard() {
                     </div>
                     <div className={styles['links']}>
                         <Link to='diary' className={styles['link-green']}>See grades</Link>
+                    </div>
+                </div>
+
+                <div className={styles['reviews-info']}>
+                    <div>
+                        <p className={styles['info-title']}>Total reviews:</p>
+                        <p className={styles['info-number']}>{reviewsCount}</p>
+                    </div>
+                    <div className={styles['links']}>
+                        <Link to='reviews' className={styles['link-orange']}>See reviews</Link>
                     </div>
                 </div>
             </div>

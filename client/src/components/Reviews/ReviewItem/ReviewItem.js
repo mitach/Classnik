@@ -3,9 +3,9 @@ import styles from './review-item.module.css';
 function ReviewItem({review}) {
     
     const styler = (type) => {
-        if (type == 'Compliment') {
+        if (type === 'Compliment') {
             return 'compliment';
-        } else if (type == 'Complaint') {
+        } else if (type === 'Complaint') {
             return 'complaint';
         }
     }

@@ -5,7 +5,7 @@ export const getStudentReviews = async (userId) => {
 
     if (response.ok) {
         const result = await response.json();
-        console.log(result);
+
         return result;
     } else {
         throw new Error({ message: 'Unable to get reviews for user!' });
