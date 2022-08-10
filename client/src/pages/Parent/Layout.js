@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 
 import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
-// import Diary from '../Diary/Diary';
-// import Tests from '../Tests/Tests';
+
+import Contacts from '../../components/Contacts/Contacts';
 
 import styles from './layout.module.css';
 
@@ -30,8 +30,7 @@ function ParentLayout(props) {
                 <Sidebar sidebarStyle={sidebarStyle} />
                 <div className={styles['router-body']} style={routerFilterStyle}>
                     <Routes>
-                        {/* <Route path='/diary' element={<Diary />} /> */}
-                        {/* <Route path='/tests' element={<Tests />} /> */}
+                        <Route path='/contacts' element={<Contacts />} />
                     </Routes>
                 </div>
             </div>

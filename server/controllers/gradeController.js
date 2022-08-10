@@ -4,6 +4,16 @@ const router = express.Router();
 const Grade = require('../models/Grade');
 const Student = require('../models/Student');
 
+router.get('/count', async (req, res) => {
+    const count = await Grade.count();
+
+    if (count) {
+        res.status(201).json({ count });
+    } else {
+        res.status(201).json({ count: 0 });
+    }
+});
+
 router.post('/', async (req, res) => {
     const { grade, id, subject } = req.body;
 

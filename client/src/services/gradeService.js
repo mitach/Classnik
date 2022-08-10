@@ -1,5 +1,17 @@
 const baseUrl = 'http://localhost:8080/api/grades';
 
+export const getCount = async () => {
+    const response = await fetch(baseUrl + '/count');
+
+    if (response.ok) {
+        const result = await response.json();
+
+        return result.count;
+    } else {
+        throw new Error({ message: 'Unable to get count of teachers!' })
+    }
+}
+
 export const add = async (data) => {
     const response = await fetch(baseUrl, {
         method: 'POST',

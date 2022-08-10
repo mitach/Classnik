@@ -1,30 +1,17 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
 
-import * as teacherService from '../../services/teacherService';
-import { TeacherContext } from '../../contexts/TeacherContext';
-import { AuthContext } from '../../contexts/AuthContext';
-
 import Classes from '../../components/Classes/Classes';
 import ClassStudents from '../../components/ClassStudents/ClassStudents';
+import Contacts from '../../components/Contacts/Contacts';
 
 import styles from './layout.module.css';
 
 function TeacherLayout(props) {
-    const { user } = useContext(AuthContext);
-
     const [toggleSidebar, setToggleSidebar] = useState(false);
-    const [teacher, setTeacher] = useState();
-
-    useEffect(() => {
-        teacherService.getMe(user._id)
-            .then(result => {
-                setTeacher(result);
-            });
-    }, []);
 
     const setToggleSidebarOpposite = () => {
         setToggleSidebar(state => !state);
@@ -40,7 +27,6 @@ function TeacherLayout(props) {
 
     return (
         <>
-            <TeacherContext.Provider value={{ teacher }}>
                 <Topbar setToggle={setToggleSidebarOpposite} isToggled={toggleSidebar} />
                 <div>
                     <Sidebar sidebarStyle={sidebarStyle} />
@@ -49,10 +35,11 @@ function TeacherLayout(props) {
                         <Routes>
                             <Route path='/classes' element={<Classes />} />
                             <Route path='/classes/:id' element={<ClassStudents />} />
+                            <Route path='/contacts' element={<Contacts />} />
                         </Routes>
                     </div>
                 </div>
-            </TeacherContext.Provider>
+
         </>
     );
 }

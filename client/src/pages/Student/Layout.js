@@ -7,6 +7,7 @@ import Sidebar from './Sidebar/Sidebar';
 import StudentDiary from '../../components/StudentDiary/StudentDiary';
 
 import styles from './layout.module.css';
+import Contacts from '../../components/Contacts/Contacts';
 
 function StudentLayout(props) {
     const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -31,6 +32,7 @@ function StudentLayout(props) {
                 <div className={styles['router-body']} style={routerFilterStyle}>
                     <Routes>
                         <Route path='/diary' element={<StudentDiary />} />
+                        <Route path='/contacts' element={<Contacts />} />
                     </Routes>
                 </div>
             </div>
