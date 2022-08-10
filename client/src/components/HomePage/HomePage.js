@@ -1,12 +1,25 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaRegStar, FaVolleyballBall, FaArrowRight, FaChalkboardTeacher, FaChild } from 'react-icons/fa'
+import { FaRegStar, FaVolleyballBall, FaArrowRight, FaChalkboardTeacher, FaChild } from 'react-icons/fa';
+
+import * as gradeService from '../../services/gradeService';
 
 import styles from './home-page.module.css';
 
 function HomePage() {
-    const [averageGrade, setAverageGrade] = useState();
+    const [averageGrade, setAverageGrade] = useState('');
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const data = Object.fromEntries(new FormData(e.target));
+
+        gradeService.getAverageGrade(data.email)
+            .then(result => {
+                setAverageGrade(result.average);
+            })
+    }
+    
     return (
         <>
             <header className={styles['header']}>
@@ -87,12 +100,12 @@ function HomePage() {
                 </div>
 
                 <div className={styles['check-form']}>
-                    <form>
-                        <input type="text" className={styles['form-input']} placeholder="student@npgpto.bg" />
+                    <form onSubmit={onSubmit}>
+                        <input type="text" name='email' id="email" className={styles['form-input']} placeholder="student@npgpto.bg" />
                         <button type="submit" className={styles['form-btn']}><FaArrowRight className={styles['btn-icon']} /></button>
                     </form>
 
-                    <div className={styles['check-grade']}>5,36</div>
+                    <div className={styles['check-grade']}>{averageGrade}</div>
                 </div>
             </section>
 

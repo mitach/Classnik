@@ -24,6 +24,8 @@ export const getCount = async () => {
     }
 }
 
+
+
 export const create = async (studentInfo) => {
     const response = await fetch(baseUrl, {
         method: 'POST',

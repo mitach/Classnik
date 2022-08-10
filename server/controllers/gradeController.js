@@ -27,6 +27,19 @@ router.get('/:userId', async (req, res) => {
     res.status(201).json({ count: grades.length, average: average.toFixed(2) });
 });
 
+router.get('/byemail/:email', async (req, res) => {
+    const student = await Student.find({ email: req.params.email });
+    const grades = await Grade.find({ studentId: student[0]._id });
+
+    let average = 0;
+    if (grades.length > 0) {
+        grades.map(x => average += Number(x.grade));
+        average /= grades.length;
+    }    
+
+    res.status(201).json({ average: average.toFixed(2) });
+});
+
 router.post('/', async (req, res) => {
     const { grade, id, subject } = req.body;
 
