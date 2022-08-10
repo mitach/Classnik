@@ -8,6 +8,8 @@ import AdminDashboard from '../../components/AdminDashboard/AdminDashboard';
 import AddStudent from '../../components/AddStudent/AddStudent';
 import AddStudentClass from '../../components/AddStudentClass/AddStudentClass';
 import ManageTeachers from '../../components/ManageTeachers/ManageTeachers';
+import AdminContacts from '../../components/AdminContacts/AdminContacts';
+import ContactsForm from '../../components/ContactsForm/ContactsForm';
 
 import styles from './layout.module.css';
 
@@ -37,6 +39,8 @@ function AdminLayout(props) {
                         <Route path='/manage-teachers' element={<ManageTeachers />} />
                         <Route path='/add-class' element={<AddStudentClass />} />
                         <Route path='/add-student' element={<AddStudent />} />
+                        <Route path='/contacts' element={<AdminContacts />} />
+                        <Route path='/contacts/edit' element={<ContactsForm />} />
                     </Routes>
                 </div>
             </div>

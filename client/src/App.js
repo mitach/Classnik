@@ -49,12 +49,15 @@ function App() {
                     {role === 'admin' && 
                         <Route path='/dashboard/*' element={<AdminLayout />} />
                     }
+
                     {role === 'parent' && 
                         <Route path='/dashboard/*' element={<ParentLayout />} />
                     }
+
                     {role === 'student' && 
                         <Route path='/dashboard/*' element={<StudentLayout />} />
                     }
+                    
                     {role === 'teacher' && 
                         <Route path='/dashboard/*' element={<TeacherLayout />} />
                     }
