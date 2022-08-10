@@ -1,0 +1,30 @@
+.compliment {
+    background-color: rgb(119, 197, 119);
+    margin: 10px;
+    padding: 10px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.complaint {
+    background-color: rgb(209, 122, 122);
+    margin: 10px;
+    padding: 10px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.subject {
+    text-align: center;
+    color: #efefef;
+}
+
+.type {
+    color: #efefef;
+    text-align: end;
+    font-size: 14px;
+}

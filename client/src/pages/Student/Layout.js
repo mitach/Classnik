@@ -9,6 +9,7 @@ import StudentDiary from '../../components/StudentDiary/StudentDiary';
 import styles from './layout.module.css';
 import Contacts from '../../components/Contacts/Contacts';
 import StudentDashboard from '../../components/StudentDashboard/StudentDashboard';
+import Reviews from '../../components/Reviews/Reviews';
 
 function StudentLayout(props) {
     const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -34,6 +35,7 @@ function StudentLayout(props) {
                     <Routes>
                         <Route path='/' element={<StudentDashboard />} />
                         <Route path='/diary' element={<StudentDiary />} />
+                        <Route path='/reviews' element={<Reviews />} />
                         <Route path='/contacts' element={<Contacts />} />
                     </Routes>
                 </div>

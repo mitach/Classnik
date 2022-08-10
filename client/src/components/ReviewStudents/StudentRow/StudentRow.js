@@ -51,7 +51,7 @@ function StudentRow({
                     />
                 </td>
                 <td className={styles['td-actions']}>
-                    <button className={styles['btn-compliment']} onClick={reviewHandler}>Compiment</button>
+                    <button className={styles['btn-compliment']} onClick={reviewHandler}>Compliment</button>
                     <button className={styles['btn-complaint']} onClick={reviewHandler}>Complaint</button>
                 </td>
             </tr>
