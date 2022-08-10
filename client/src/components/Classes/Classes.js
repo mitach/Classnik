@@ -31,7 +31,6 @@ function Classes() {
                             <td ><Link to={`${x._id}`} className={styles['link']}><FaSearchPlus /></Link></td>
                         </tr>
                     )}
-
                 </tbody>
 
             </table>

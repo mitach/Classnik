@@ -9,6 +9,7 @@ import ClassStudents from '../../components/ClassStudents/ClassStudents';
 import Contacts from '../../components/Contacts/Contacts';
 
 import styles from './layout.module.css';
+import ReviewStudents from '../../components/ReviewStudents/ReviewStudents';
 
 function TeacherLayout(props) {
     const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -35,6 +36,8 @@ function TeacherLayout(props) {
                         <Routes>
                             <Route path='/classes' element={<Classes />} />
                             <Route path='/classes/:id' element={<ClassStudents />} />
+                            <Route path='/reviews' element={<Classes />} />
+                            <Route path='/reviews/:id' element={<ReviewStudents />} />
                             <Route path='/contacts' element={<Contacts />} />
                         </Routes>
                     </div>

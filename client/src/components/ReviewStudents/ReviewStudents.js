@@ -1,16 +1,17 @@
-import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 
 import * as teacherService from '../../services/teacherService';
 import * as classService from '../../services/classService';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from "../../contexts/AuthContext";
 
-import StudentRow from './StudentRow/StudentRow';
+import StudentRow from "./StudentRow/StudentRow";
 
-import styles from './class-students.module.css';
+import styles from './review-students.module.css';
 
-function ClassStudents() {
+function ReviewStudents() {
+
     const [subject, setSubject] = useState('');
     const { user } = useContext(AuthContext)
     const { id } = useParams();
@@ -32,9 +33,8 @@ function ClassStudents() {
     return (
         <div>
             <header className={styles['header']}>
-                <Link to='/dashboard/classes' className={styles['link']}><FaArrowAltCircleLeft /></Link>
+                <Link to='/dashboard/reviews' className={styles['link']}><FaArrowAltCircleLeft /></Link>
                 <h2>{subject}</h2>
-                <span className={styles['delete-guide']}>*delete grades by double clicking on them</span>
             </header>
 
             <section>
@@ -42,8 +42,8 @@ function ClassStudents() {
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Current Grades</th>
-                            <th>Add Grade</th>
+                            <th>Enter review</th>
+                            <th>Type</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,4 +55,4 @@ function ClassStudents() {
     );
 }
 
-export default ClassStudents;
+export default ReviewStudents;

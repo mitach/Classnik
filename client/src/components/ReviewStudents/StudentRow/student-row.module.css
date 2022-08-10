@@ -1,0 +1,69 @@
+.td-actions {
+    background-color: rgb(154, 157, 185);
+    display: flex;
+    gap: 10px;
+    height: 35px;
+}
+
+.td-name {
+    background-color: rgb(154, 157, 185);
+    width: 30%;
+    font-weight: bold;
+}
+
+.td-input {
+    background-color: rgb(154, 157, 185);
+    width: 70%;
+    text-align: start;
+}
+
+.input {
+    width: 98%;
+    height: 100%;
+    outline: none;
+    border: none;
+    padding: 0 10px;
+    font-size: 18px;
+    border-radius: 3px;
+}
+
+.btn-compliment {
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: rgb(101, 170, 101);
+    color: white;
+    font-weight: bold;
+}
+
+.btn-complaint {
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: rgb(180, 118, 118);
+    color: white;
+    font-weight: bold;
+}
+
+.btn-complaint:active {
+    background-color: rgb(155, 69, 69);
+}
+
+.btn-compliment:active {
+    background-color: rgb(77, 136, 77);
+}
+
+.success-para {
+    text-align: center;
+    background-color: rgb(182, 220, 182);
+}
+
+.empty-data-left {
+    border-bottom-left-radius: 100%;
+}
+
+.empty-data-right {
+    border-bottom-right-radius: 100%;
+}

@@ -60,7 +60,7 @@ router.post('/', async (req, res) => {
         });
     } else {
         res.status(400);
-        throw new Error('Invalid grade data!')
+        throw new Error('Invalid grade data!');
     }
 });
 
