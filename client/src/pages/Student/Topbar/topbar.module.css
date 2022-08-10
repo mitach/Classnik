@@ -5,6 +5,7 @@
     padding: 15px;
     color: #3b4483;
     height: 50px;
+    user-select: none;
   }
 
   .top-bar__logo-sec {

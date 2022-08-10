@@ -8,7 +8,19 @@ export const getCount = async () => {
 
         return result.count;
     } else {
-        throw new Error({ message: 'Unable to get count of teachers!' })
+        throw new Error({ message: 'Unable to get count of grades!' })
+    }
+}
+
+export const getCountForStudent = async (userId) => {
+    const response = await fetch(baseUrl + `/${userId}`);
+
+    if (response.ok) {
+        const result = await response.json();
+
+        return result;
+    } else {
+        throw new Error({ message: 'Unable to get count of grades!' })
     }
 }
 
