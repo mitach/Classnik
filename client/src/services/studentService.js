@@ -49,3 +49,20 @@ export const create = async (studentInfo) => {
         throw new Error({ message: 'Unable to create student!' })
     }
 }
+
+export const remove = async (studentId) => {
+    const response = await fetch(baseUrl + `/${studentId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+
+        return result.id;
+    } else {
+        throw new Error({ message: 'Unable to delete student!' });
+    }
+}

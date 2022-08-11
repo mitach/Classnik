@@ -20,6 +20,7 @@ function ManageStudents() {
             .then(result => {
                 setStudents(result);
             });
+
     }, [currPage, pageSize]);
 
     const nextPageHandler = () => {
@@ -36,6 +37,13 @@ function ManageStudents() {
         setPageSize(e.target.textContent);
     }
 
+    const delStudentHandler = (e) => {
+        studentService.remove(e.target.id)
+            .then(removedStudentId => {
+                setStudents(state => state.filter(x => x._id !== removedStudentId));
+            });
+    }
+
     return (
         <div className={styles['wrapper']}>
             <h1>Students</h1>
@@ -48,7 +56,7 @@ function ManageStudents() {
                             <td className={styles['td-name']}>{x.firstName} {x.lastName}</td>
                             <td className={styles['td']}>{x.studentClass}</td>
                             <td className={styles['td']}>
-                                <button className={styles['del-btn']}>X</button>
+                                <button id={x._id} onClick={delStudentHandler} className={styles['del-btn']}>X</button>
                             </td>
                         </tr>)}
                     </tbody>

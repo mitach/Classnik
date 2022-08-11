@@ -86,4 +86,15 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.delete('/:studentId', async (req, res) => {
+    const student = await Student.findById(req.params.studentId);
+    const studentClass = await StudentClass.findOne({ name: student.studentClass });
+    studentClass.students = studentClass.students.filter(x => x.toString() !== student._id.toString());
+    await StudentClass.findOneAndUpdate({ name: student.studentClass }, studentClass);
+    await User.findByIdAndDelete(student.userId);
+    await Student.findByIdAndDelete(req.params.studentId);
+
+    res.status(201).json({ id: req.params.studentId });
+});
+
 module.exports = router;
