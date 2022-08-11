@@ -7,12 +7,14 @@ import * as teacherService from '../../../services/teacherService';
 import * as classService from '../../../services/classService';
 import * as studentService from '../../../services/studentService';
 import * as gradeService from '../../../services/gradeService';
+import * as parentService from '../../../services/parentService';
 
 function Statistics() {
     const [teachersCount, setTeachersCount] = useState(0);
     const [classesCount, setClassesCount] = useState(0);
     const [studentsCount, setStudentsCount] = useState(0);
     const [gradesCount, setGradesCount] = useState(0);
+    const [parentCount, setParentCount] = useState(0);
     
     useEffect(() => {
         teacherService.getCount()
@@ -33,6 +35,11 @@ function Statistics() {
         gradeService.getCount()
             .then(count => {
                 setGradesCount(count);
+            })
+        
+        parentService.getCount()
+            .then(count => {
+                setParentCount(count);
             })
     }, []);
 
@@ -55,7 +62,6 @@ function Statistics() {
                         <p className={styles['info-number']}>{teachersCount}</p>
                     </div>
                     <div className={styles['links']}>
-                        <Link to='/dashboard/manage-teachers' className={styles['link-green']}>Add</Link>
                         <Link to='/dashboard/manage-teachers' className={styles['link-green']}>See all</Link>
                     </div>
                 </div>
@@ -66,7 +72,6 @@ function Statistics() {
                         <p className={styles['info-number']}>{classesCount}</p>
                     </div>
                     <div className={styles['links']}>
-                        <Link to='/dashboard/add-class' className={styles['link-salmon']}>Add</Link>
                         <Link to='/dashboard/add-class' className={styles['link-salmon']}>See all</Link>
                     </div>
                 </div>
@@ -76,7 +81,13 @@ function Statistics() {
                         <p className={styles['info-title']}>Total grades:</p>
                         <p className={styles['info-number']}>{gradesCount}</p>
                     </div>
-                    
+                </div>
+
+                <div className={styles['parents-info']}>
+                    <div>
+                        <p className={styles['info-title']}>Total parents:</p>
+                        <p className={styles['info-number']}>{parentCount}</p>
+                    </div>
                 </div>
             </div>
         </div>

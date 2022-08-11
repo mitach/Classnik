@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
 
-import Contacts from '../../components/Contacts/Contacts';
+import ParentDashboard from '../../components/ParentDashboard/ParentDashboard';
 
 import styles from './layout.module.css';
 
@@ -30,7 +30,7 @@ function ParentLayout(props) {
                 <Sidebar sidebarStyle={sidebarStyle} />
                 <div className={styles['router-body']} style={routerFilterStyle}>
                     <Routes>
-                        <Route path='/contacts' element={<Contacts />} />
+                        <Route path='/' element={<ParentDashboard />} />
                     </Routes>
                 </div>
             </div>

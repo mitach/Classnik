@@ -8,7 +8,7 @@ export const getMe = async (userId) => {
 
         return result;
     } else {
-        throw new Error({ message: 'Unable to get count of teachers!' })
+        throw new Error({ message: 'Unable to get student!' })
     }
 }
 

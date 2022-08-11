@@ -18,6 +18,7 @@ function Register() {
         lastName: '',
         email: '',
         password: '',
+        studentEmail: '',
     });
 
     const [errors, setErrors] = useState({
@@ -25,22 +26,34 @@ function Register() {
         lastName: '',
         email: '',
         password: '',
+        alreadyTakenEmail: '',
+        studentEmail: '',
     });
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
-        if (errors.firstName || errors.lastName || errors.email || errors.password) {
+        if (errors.firstName || errors.lastName || errors.email || errors.password || errors.studentEmail) {
             return;
         }
 
         values['role'] = 'parent';
-        
-        authService.register(values)
-            .then(authData => {
-                userLogin(authData);
-                navigate('/dashboard');
-            });
+
+        try {
+            const authData = await authService.register(values);
+
+            if (!authData.role && !authData.role && authData.message) {
+                throw new Error(authData.message);
+            }
+
+            userLogin(authData);
+            navigate('/dashboard');
+        } catch (error) {
+            setErrors(state => ({
+                ...state,
+                alreadyTakenEmail: error.message
+            }));
+        }
     }
 
     const changeHandler = (e) => {
@@ -144,18 +157,31 @@ function Register() {
                 }
 
                 <InputBlock
-                    valueUsername={values.password}
+                    value={values.password}
                     name="password"
                     placeholder="Password"
                     type="password"
                     icon={FaLock}
                     changeHandler={changeHandler}
                     validator={passwordValidator}
-
                 />
 
                 {errors.password &&
                     <div className={styles['error']}>{errors.password}</div>
+                }
+
+                <InputBlock
+                    value={values.studentEmail}
+                    name="studentEmail"
+                    placeholder="Student email"
+                    type="email"
+                    icon={FaAt}
+                    changeHandler={changeHandler}
+                    validator={emailValidator}
+                />
+
+                {errors.alreadyTakenEmail &&
+                    <div className={styles['email-error']}>{errors.alreadyTakenEmail}</div>
                 }
 
                 <img className={styles['image']} src="https://svgsilh.com/svg/2802840.svg" alt="person img" />
