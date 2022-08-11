@@ -12,6 +12,18 @@ export const getCount = async () => {
     }
 }
 
+export const getStudentOfParent = async (userId) => {
+    const response = await fetch(baseUrl + `/studentof/${userId}`);
+
+    if (response.ok) {
+        const result = await response.json();
+
+        return result;
+    } else {
+        throw new Error({ message: 'Unable to get student!' })
+    }
+}
+
 export const getMe = async (userId) => {
     const response = await fetch(baseUrl + `/${userId}`);
 

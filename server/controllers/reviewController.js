@@ -5,7 +5,7 @@ const Review = require('../models/Review');
 const Student = require('../models/Student');
 
 router.get('/student/:userId', async (req, res) => {
-    const student = await Student.findOne({ userId: req.params.userId });
+    const student = await Student.findOne({ userId: req.params.userId }) || await Student.findOne({ _id: req.params.userId }) ;
     const reviews = await Review.find({ studentId: student._id });
     
     if (reviews) {

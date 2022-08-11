@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Parent = require('../models/Parent');
+const Student = require('../models/Student');
 
 router.get('/count', async (req, res) => {
     const count = await Parent.count();
@@ -20,6 +21,18 @@ router.get('/:userId', async (req, res) => {
     } else {
         res.status(400);
         throw new Error('Invalid parent data!');
+    }
+});
+
+router.get('/studentof/:userId', async (req, res) => {
+    const parent = await Parent.findOne({ userId: req.params.userId });
+    const student = await Student.findOne({ email: parent.studentEmail });
+    
+    if (student) {
+        res.status(201).json(student);
+    } else {
+        res.status(400);
+        throw new Error('Invalid student data!');
     }
 });
 

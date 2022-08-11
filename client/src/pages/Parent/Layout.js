@@ -5,6 +5,9 @@ import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
 
 import ParentDashboard from '../../components/ParentDashboard/ParentDashboard';
+import Contacts from '../../components/Contacts/Contacts';
+import Reviews from '../../components/Reviews/Reviews';
+import Diary from '../../components/Diary/Diary';
 
 import styles from './layout.module.css';
 
@@ -31,6 +34,9 @@ function ParentLayout(props) {
                 <div className={styles['router-body']} style={routerFilterStyle}>
                     <Routes>
                         <Route path='/' element={<ParentDashboard />} />
+                        <Route path='/diary' element={<Diary />} />
+                        <Route path='/reviews' element={<Reviews />} />
+                        <Route path='/contacts' element={<Contacts />} />
                     </Routes>
                 </div>
             </div>

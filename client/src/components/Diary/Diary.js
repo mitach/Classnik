@@ -2,31 +2,49 @@ import { useContext, useEffect, useState } from 'react';
 import { FaBook } from 'react-icons/fa'
 
 import * as studentService from '../../services/studentService';
+import * as parentService from '../../services/parentService';
 import { AuthContext } from '../../contexts/AuthContext';
 
 import { styleDecider } from '../../utils/styleDeciders';
 import styles from './student-diary.module.css';
 
-function StudentDiary() {
+function Diary() {
     const [grades, setGrades] = useState({});
     const [subjects, setSubjects] = useState([]);
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        studentService.getMe(user._id)
-            .then(result => {
-                let subjectsArr = [];
-                for (let key in result.grades) {
-                    let avg = 0;
-                    for (let grade of result.grades[key]) {
-                        avg += Number(grade.grade);
+        if (user.role === 'student') {
+            studentService.getMe(user._id)
+                .then(result => {
+                    let subjectsArr = [];
+                    for (let key in result.grades) {
+                        let avg = 0;
+                        for (let grade of result.grades[key]) {
+                            avg += Number(grade.grade);
+                        }
+                        avg = avg / Number(result.grades[key].length);
+                        subjectsArr.push({ subject: key, avg });
                     }
-                    avg = avg / Number(result.grades[key].length);
-                    subjectsArr.push({ subject: key, avg });
-                }
-                setGrades(result.grades);
-                setSubjects(subjectsArr);
-            })
+                    setGrades(result.grades);
+                    setSubjects(subjectsArr);
+                });
+        } else if (user.role === 'parent') {
+            parentService.getStudentOfParent(user._id)
+                .then(result => {
+                    let subjectsArr = [];
+                    for (let key in result.grades) {
+                        let avg = 0;
+                        for (let grade of result.grades[key]) {
+                            avg += Number(grade.grade);
+                        }
+                        avg = avg / Number(result.grades[key].length);
+                        subjectsArr.push({ subject: key, avg });
+                    }
+                    setGrades(result.grades);
+                    setSubjects(subjectsArr);
+                });
+        }
     }, [user]);
 
     return (
@@ -56,4 +74,4 @@ function StudentDiary() {
     );
 }
 
-export default StudentDiary;
+export default Diary;

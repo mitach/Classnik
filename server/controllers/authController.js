@@ -58,6 +58,7 @@ router.post('/register', async (req, res) => {
                 email: user.email,
                 studentEmail: parent.studentEmail,
                 token: generateToken(user._id),
+                _id: user._id
             });
         } else {
             res.status(400);
