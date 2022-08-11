@@ -1,0 +1,21 @@
+.title {
+    text-align: center;
+}
+
+.schedule-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.schedule-day {
+    background-color: antiquewhite;
+    padding: 10px;
+    margin: 10px;
+}
+
+.schedule-title {
+    text-align: center;
+}

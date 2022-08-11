@@ -15,7 +15,7 @@ function ParentDashboard() {
             .then(result => {
                 setStudentEmail(result.studentEmail);
             });
-    }, []);
+    }, [user]);
 
     return (
         <div className={styles['wrapper']}>

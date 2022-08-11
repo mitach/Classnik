@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 
 router.get('/count', async (req, res) => {
     const count = await StudentClass.count();
-        
+
     if (count) {
         res.status(201).json({ count });
     } else {
@@ -40,6 +40,14 @@ router.get('/:id', async (req, res) => {
         res.status(201).json({
             students: studentsArr,
         });
+    }
+});
+
+router.get('/student-class/:studentClassName', async (req, res) => {
+    const studentClass = await StudentClass.findOne({ name: req.params.studentClassName });
+    
+    if (studentClass) {
+        res.status(201).json(studentClass)
     }
 });
 
@@ -71,6 +79,23 @@ router.post('/', async (req, res) => {
         res.status(400);
         throw new Error('Invalid student class data!');
     }
+});
+
+router.put('/schedule', async (req, res) => {
+    const { studentClassName, monday, tuesday, wednesday, thursday, friday } = req.body;
+
+    const studentClass = await StudentClass.findOne({ name: studentClassName });
+    studentClass.schedule = {
+        'Monday': monday,
+        'Tuesday': tuesday,
+        'Wednesday': wednesday,
+        'Thursday': thursday,
+        'Friday': friday,
+    };
+
+    const updatedStudentClass = await StudentClass.findOneAndUpdate({ name: studentClassName }, studentClass);
+
+    res.status(201).json(updatedStudentClass);
 });
 
 module.exports = router;

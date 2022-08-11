@@ -8,6 +8,7 @@ import Contacts from '../../components/Contacts/Contacts';
 import StudentDashboard from '../../components/StudentDashboard/StudentDashboard';
 import Diary from '../../components/Diary/Diary';
 import Reviews from '../../components/Reviews/Reviews';
+import Schedule from '../../components/Schedule/Schedule'; 
 
 import styles from './layout.module.css';
 
@@ -37,6 +38,7 @@ function StudentLayout(props) {
                         <Route path='/diary' element={<Diary />} />
                         <Route path='/reviews' element={<Reviews />} />
                         <Route path='/contacts' element={<Contacts />} />
+                        <Route path='/schedule' element={<Schedule />} />
                     </Routes>
                 </div>
             </div>
