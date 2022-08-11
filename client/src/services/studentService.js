@@ -1,5 +1,13 @@
 const baseUrl = 'http://localhost:8080/api/students';
 
+export const getStudents = async (pageSize, currPage) => {
+    const response = await fetch(baseUrl + `?pagesize=${pageSize}&page=${currPage}`);
+
+    const result = await response.json();
+
+    return result;
+}
+
 export const getMe = async (userId) => {
     const response = await fetch(baseUrl + `/${userId}`);
 
@@ -23,8 +31,6 @@ export const getCount = async () => {
         throw new Error({ message: 'Unable to get count of teachers!' })
     }
 }
-
-
 
 export const create = async (studentInfo) => {
     const response = await fetch(baseUrl, {

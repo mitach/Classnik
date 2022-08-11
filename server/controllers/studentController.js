@@ -7,6 +7,15 @@ const Student = require('../models/Student');
 const User = require('../models/User');
 const StudentClass = require('../models/StudentClass');
 
+router.get('/', async (req, res) => {
+    const pageSize = Number(req.query.pagesize);
+    const currPage = Number(req.query.page);
+
+    const students = await Student.find().skip(pageSize * (currPage - 1)).limit(pageSize);
+
+    res.status(201).json(students);
+});
+
 router.get('/count', async (req, res) => {
     const count = await Student.count();
 
