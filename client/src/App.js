@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { useLocalStorage } from './hooks/useLocalStorage';
@@ -7,10 +7,12 @@ import { AuthContext } from './contexts/AuthContext';
 import Auth from './components/Auth/Auth';
 
 import HomePage from './components/HomePage/HomePage';
-import AdminLayout from './pages/Admin/Layout';
-import ParentLayout from './pages/Parent/Layout';
-import StudentLayout from './pages/Student/Layout';
-import TeacherLayout from './pages/Teacher/Layout';
+
+// import ParentLayout from './pages/Parent/Layout';
+const ParentLayout = lazy(() => import('./pages/Parent/Layout'));
+const TeacherLayout = lazy(() => import('./pages/Teacher/Layout'));
+const StudentLayout = lazy(() => import('./pages/Student/Layout'));
+const AdminLayout = lazy(() => import('./pages/Admin/Layout'));
 
 function App() {
     const [auth, setAuth] = useLocalStorage('auth', {});
@@ -47,20 +49,36 @@ function App() {
                     <Route path='/login' element={loggedIn ? <Navigate to='/dashboard' /> : <Auth />} />
                     <Route path='/register' element={loggedIn ? <Navigate to='/dashboard' /> : <Auth />} />
 
-                    {role === 'admin' && 
-                        <Route path='/dashboard/*' element={<AdminLayout />} />
+                    {role === 'admin' &&
+                        <Route path='/dashboard/*' element={
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <AdminLayout />
+                            </Suspense>
+                        } />
                     }
 
-                    {role === 'parent' && 
-                        <Route path='/dashboard/*' element={<ParentLayout />} />
+                    {role === 'parent' &&
+                        <Route path='/dashboard/*' element={
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <ParentLayout />
+                            </Suspense>
+                        } />
                     }
 
-                    {role === 'student' && 
-                        <Route path='/dashboard/*' element={<StudentLayout />} />
+                    {role === 'student' &&
+                        <Route path='/dashboard/*' element={
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <StudentLayout />
+                            </Suspense>
+                        } />
                     }
-                    
-                    {role === 'teacher' && 
-                        <Route path='/dashboard/*' element={<TeacherLayout />} />
+
+                    {role === 'teacher' &&
+                        <Route path='/dashboard/*' element={
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <TeacherLayout />
+                            </Suspense>
+                        } />
                     }
 
                 </Routes>

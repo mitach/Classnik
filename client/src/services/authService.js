@@ -19,19 +19,41 @@ export const register = async (userData) => {
 }
 
 export const login = async (userData) => {
-    const response = await fetch(baseUrl + '/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-    });
+    // const response = await fetch(baseUrl + '/login', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(userData),
+    // });
 
-    if (response.ok) {
+    // if (response.ok) {
+    //     const result = await response.json();
+    //     console.log('service ', result);
+    //     return result;
+    // } else {
+    //     const error = await response.json();
+
+    //     return error;
+    // }
+
+    try {
+        const response = await fetch(baseUrl + '/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData),
+        });
+
         const result = await response.json();
 
+        if (!result.role && !result.token && result.message) {
+            throw new Error(result.message);
+        }
+
         return result;
-    } else {
-        throw new Error({ message: 'Unable to create user!' })
+    } catch (error) {
+        return error;
     }
 }

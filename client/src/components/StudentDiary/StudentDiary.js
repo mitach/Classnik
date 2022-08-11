@@ -30,14 +30,14 @@ function StudentDiary() {
     }, [user]);
 
     return (
-        <>
+        <div>
             {subjects.length > 0 &&
                 <table>
                     <thead>
                         <tr>
-                            <th>Subject</th>
-                            <th>Current Grades</th>
-                            <th>Average</th>
+                            <th className={styles['th-subject']}>Subject</th>
+                            <th className={styles['th-curr-grades']}>Current Grades</th>
+                            <th className={styles['th-avg']}>Average</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@ function StudentDiary() {
                 </table>
             }
             {subjects.length === 0 && <p className={styles['no-grades']}>No Grades yet</p>}
-        </>
+        </div>
     );
 }
 

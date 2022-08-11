@@ -7,7 +7,7 @@ import * as gradeService from '../../services/gradeService';
 import styles from './home-page.module.css';
 
 function HomePage() {
-    const [averageGrade, setAverageGrade] = useState('');
+    const [averageGrade, setAverageGrade] = useState(0);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -19,7 +19,7 @@ function HomePage() {
                 setAverageGrade(result.average);
             })
     }
-    
+
     return (
         <>
             <header className={styles['header']}>

@@ -50,28 +50,37 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    
-    if (!email || !password) {
-        res.status(400);
-        throw new Error('Please add all fields!');
-    }
+    try {
+        const { email, password } = req.body;
 
-    // Check for user email
-    const user = await User.findOne({ email });
-    const validPassword = await bcrypt.compare(password, user.password);
+        if (!email || !password) {
+            res.status(400);
+            throw new Error('Please add all fields!');
+        }
 
-    if (user && validPassword) {
-        res.json({
+        // Check for user email
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(401).send({ message: 'Invalid email or password' });
+        }
+
+        const validPassword = await bcrypt.compare(password, user.password);
+
+        if (!validPassword) {
+            return res.status(401).send({ message: 'Invalid email or password' });
+        }
+
+        res.status(200).json({
             role: user.role,
             name: `${user.firstName} ${user.lastName}`,
             email: user.email,
             _id: user._id,
             token: generateToken(user._id),
         });
-    } else {
-        res.status(400);
-        throw new Error('Invalid credentials!');
+
+    } catch (error) {
+        res.status(500).send({ message: 'Internal server error!' });
     }
 });
 

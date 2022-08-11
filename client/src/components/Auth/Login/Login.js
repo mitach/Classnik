@@ -21,6 +21,7 @@ function Login() {
     const [errors, setErrors] = useState({
         email: '',
         password: '',
+        message: '',
     });
 
     const changeHandler = (e) => {
@@ -30,18 +31,37 @@ function Login() {
         }));
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
         if (errors.email || errors.password) {
             return;
         }
 
-        authService.login(values)
-            .then(authData => {
-                userLogin(authData);
-                navigate('/dashboard');
-            });
+        // authService.login(values)
+        //     .then(authData => {
+        //         userLogin(authData);
+        //         navigate('/dashboard');
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
+
+        try {
+            const authData = await authService.login(values);
+
+            if (!authData.role && !authData.role && authData.message) {
+                throw new Error(authData.message);
+            }
+
+            userLogin(authData);
+            navigate('/dashboard');
+        } catch (error) {
+            setErrors(state => ({
+                ...state,
+                message: error.message,
+            }));
+        }
     }
 
     const emailValidator = (e) => {
@@ -105,6 +125,11 @@ function Login() {
 
                 {errors.password &&
                     <div className={styles['error']}>{errors.password}</div>
+                }
+
+                {
+                    errors.message && 
+                    <div className={styles['error-message']}>{errors.message}</div>
                 }
 
                 <button
