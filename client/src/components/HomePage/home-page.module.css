@@ -212,6 +212,15 @@
     position: relative;
 }
 
+.error-email {
+    color: white;
+    background-color: red;
+    margin-top: 10px;
+    width: 390px;
+    text-align: center;
+    border-radius: 3px;
+}
+
 .btn-icon {
     border-radius: 50px;
     background-color: antiquewhite;

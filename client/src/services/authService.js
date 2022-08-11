@@ -19,24 +19,6 @@ export const register = async (userData) => {
 }
 
 export const login = async (userData) => {
-    // const response = await fetch(baseUrl + '/login', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(userData),
-    // });
-
-    // if (response.ok) {
-    //     const result = await response.json();
-    //     console.log('service ', result);
-    //     return result;
-    // } else {
-    //     const error = await response.json();
-
-    //     return error;
-    // }
-
     try {
         const response = await fetch(baseUrl + '/login', {
             method: 'POST',

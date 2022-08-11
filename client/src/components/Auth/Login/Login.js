@@ -38,15 +38,6 @@ function Login() {
             return;
         }
 
-        // authService.login(values)
-        //     .then(authData => {
-        //         userLogin(authData);
-        //         navigate('/dashboard');
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
-
         try {
             const authData = await authService.login(values);
 

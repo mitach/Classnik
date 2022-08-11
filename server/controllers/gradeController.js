@@ -22,22 +22,33 @@ router.get('/:userId', async (req, res) => {
     if (grades.length > 0) {
         grades.map(x => average += Number(x.grade));
         average /= grades.length;
-    }    
+    }
 
     res.status(201).json({ count: grades.length, average: average.toFixed(2) });
 });
 
 router.get('/byemail/:email', async (req, res) => {
-    const student = await Student.find({ email: req.params.email });
-    const grades = await Grade.find({ studentId: student[0]._id });
+    try {
+        const student = await Student.findOne({ email: req.params.email });
 
-    let average = 0;
-    if (grades.length > 0) {
-        grades.map(x => average += Number(x.grade));
-        average /= grades.length;
-    }    
+        if (!student) {
+            return res.status(201).send({ message: 'Invalid email' });
+        }
 
-    res.status(201).json({ average: average.toFixed(2) });
+        const grades = await Grade.find({ studentId: student._id });
+
+
+
+        let average = 0;
+        if (grades.length > 0) {
+            grades.map(x => average += Number(x.grade));
+            average /= grades.length;
+        }
+
+        res.status(201).json({ average: average.toFixed(2) });
+    } catch (error) {
+        res.status(500).send({ message: 'Internal server error!' });
+    }
 });
 
 router.post('/', async (req, res) => {

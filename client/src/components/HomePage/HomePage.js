@@ -8,16 +8,30 @@ import styles from './home-page.module.css';
 
 function HomePage() {
     const [averageGrade, setAverageGrade] = useState(0);
+    const [error, setError] = useState('');
 
-    const onSubmit = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
         const data = Object.fromEntries(new FormData(e.target));
 
-        gradeService.getAverageGrade(data.email)
-            .then(result => {
-                setAverageGrade(result.average);
-            })
+        try {
+            const result = await gradeService.getAverageGrade(data.email);
+
+            if (!result.average && result.message) {
+                throw new Error(result.message);
+            }
+
+            setAverageGrade(result.average);
+        } catch (error) {
+            setError(error.message);
+
+            setTimeout(() => {
+                setError('');
+            }, 2500);
+        }
+
+        e.target.children[0].value = '';
     }
 
     return (
@@ -100,11 +114,14 @@ function HomePage() {
                 </div>
 
                 <div className={styles['check-form']}>
-                    <form onSubmit={onSubmit}>
-                        <input type="text" name='email' id="email" className={styles['form-input']} placeholder="student@npgpto.bg" />
-                        <button type="submit" className={styles['form-btn']}><FaArrowRight className={styles['btn-icon']} /></button>
-                    </form>
+                    <div>
 
+                        <form onSubmit={submitHandler}>
+                            <input type="text" name='email' id="email" className={styles['form-input']} placeholder="student@npgpto.bg" />
+                            <button type="submit" className={styles['form-btn']}><FaArrowRight className={styles['btn-icon']} /></button>
+                        </form>
+                        {error && <p className={styles['error-email']}>{error}</p>}
+                    </div>
                     <div className={styles['check-grade']}>{averageGrade}</div>
                 </div>
             </section>

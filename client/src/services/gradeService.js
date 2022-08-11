@@ -25,14 +25,30 @@ export const getCountForStudent = async (userId) => {
 }
 
 export const getAverageGrade = async (email) => {
-    const response = await fetch(baseUrl + `/byemail/${email}`);
+    // const response = await fetch(baseUrl + `/byemail/${email}`);
     
-    if (response.ok) {
+    // if (response.ok) {
+    //     const result = await response.json();
+
+    //     console.log(result  )
+
+    //     return result;
+    // } else {
+    //     throw new Error({ message: 'Unable to get count of grades!' })
+    // }
+
+    try {
+        const response = await fetch(baseUrl + `/byemail/${email}`);
+
         const result = await response.json();
 
+        if (!result.average && result.message) {
+            throw new Error(result.message);
+        }
+
         return result;
-    } else {
-        throw new Error({ message: 'Unable to get count of grades!' })
+    } catch (error) {
+        return error;
     }
 }
 
