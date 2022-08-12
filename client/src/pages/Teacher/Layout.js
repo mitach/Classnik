@@ -4,13 +4,14 @@ import { Routes, Route } from 'react-router-dom';
 import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
 
+import TeacherDashboard from '../../components/TeacherDashboard/TeacherDashboard';
 import Classes from '../../components/Classes/Classes';
 import ClassStudents from '../../components/ClassStudents/ClassStudents';
+import ReviewStudents from '../../components/ReviewStudents/ReviewStudents';
 import Contacts from '../../components/Contacts/Contacts';
 import Profile from '../../components/Profile/Profile';
 
 import styles from './layout.module.css';
-import ReviewStudents from '../../components/ReviewStudents/ReviewStudents';
 
 function TeacherLayout(props) {
     const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -35,7 +36,7 @@ function TeacherLayout(props) {
 
                 <div className={styles['router-body']} style={routerFilterStyle}>
                     <Routes>
-                        <Route path='/' element={<h1>Dashboard</h1>} />
+                        <Route path='/' element={<TeacherDashboard />} />
                         <Route path='/classes' element={<Classes />} />
                         <Route path='/classes/:id' element={<ClassStudents />} />
                         <Route path='/reviews' element={<Classes />} />

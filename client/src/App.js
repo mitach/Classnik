@@ -1,5 +1,5 @@
 import { useEffect, useState, Suspense, lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Link } from 'react-router-dom';
 
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { AuthContext } from './contexts/AuthContext';
@@ -81,7 +81,13 @@ function App() {
                         } />
                     }
 
-                    <Route path='/*' element={<h1>Page not found</h1>} />
+                    <Route path='/*' element={loggedIn
+                        ? <>
+                            <h1>Page not found</h1>
+                            <Link to='/dashboard'>Go back</Link>
+                        </>
+                        : <HomePage />}
+                    />
 
                 </Routes>
             </div>
