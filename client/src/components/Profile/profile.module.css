@@ -25,3 +25,47 @@
 .span-info {
     font-weight: bold;
 }
+
+.çhange-pass {
+    margin-top: 30px;
+    background-color: rgb(91, 25, 233);
+    padding: 30px;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pass-input {
+    margin-top: 20px;
+    gap: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.error {
+    margin-top: 10px;
+    color: white;
+    background-color: red;
+    padding: 5px 10px;
+}
+
+.success {
+    margin-top: 10px;
+    color: white;
+    background-color: rgb(105, 206, 113);
+    padding: 5px 10px;
+}
+
+.submit-btn {
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    margin: 10px auto;
+    background-color: rgb(105, 206, 113);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+}

@@ -105,6 +105,31 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.put('/:userId', async (req, res) => {
+    try {
+        const { currentPassword, newPassword } = req.body;
+        
+        const user = await User.findById(req.params.userId);
+
+        const passwordMatch = await bcrypt.compare(currentPassword, user.password);
+
+        if (!passwordMatch) {
+            return res.status(201).send({ message: 'Current password is wrong!' });
+        }
+
+        const salt = await bcrypt.genSalt(Number(process.env.SALT_ROUNDS));
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+        user.password = hashedPassword;
+
+        await User.findByIdAndUpdate(req.params.userId, user);
+
+        res.status(201).json({success: 'Succesfully updated password'});
+    } catch (error) {
+        res.status(500).send({ message: 'Internal server error!' });
+    }
+});
+
 // Generate JWT
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: '7d' });

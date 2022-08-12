@@ -15,6 +15,16 @@ function HomePage() {
 
         const data = Object.fromEntries(new FormData(e.target));
 
+        if (!data.email) {
+            setError('Plese type a student email!');
+
+            setTimeout(() => {
+                setError('');
+            }, 2500);
+
+            return;
+        }
+
         try {
             const result = await gradeService.getAverageGrade(data.email);
 

@@ -37,8 +37,6 @@ router.get('/byemail/:email', async (req, res) => {
 
         const grades = await Grade.find({ studentId: student._id });
 
-
-
         let average = 0;
         if (grades.length > 0) {
             grades.map(x => average += Number(x.grade));

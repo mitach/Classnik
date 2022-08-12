@@ -5,6 +5,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import * as studentService from '../../services/studentService';
 import * as parentService from '../../services/parentService';
 import * as teacherService from '../../services/teacherService';
+import * as authService from '../../services/authService';
 
 import styles from './profile.module.css';
 
@@ -12,6 +13,8 @@ function Profile() {
     const { userId } = useParams();
     const { user } = useContext(AuthContext);
     const [userInfo, setUserInfo] = useState();
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     useEffect(() => {
         if (user.role === 'student') {
@@ -34,6 +37,55 @@ function Profile() {
         }
 
     }, [user, userId]);
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        let values = Object.fromEntries(new FormData(e.target));
+
+        if (values.newPassword.length < 6) {
+            setError('New passwords should be 6 or more charachters!');
+
+            setTimeout(() => {
+                setError('');
+            }, 2500);
+
+            return;
+        }
+
+        if (values.newPassword !== values.rePassword) {
+            setError('New passwords mismatch!');
+
+            setTimeout(() => {
+                setError('');
+            }, 2500);
+
+            return;
+        }
+
+        try {
+            const result = await authService.changePassword(userId, values);
+
+            if (result.message && !result.success) {
+                throw new Error(result.message);
+            } else if (result.success && !result.message) {
+                setSuccess('Successfully updated password!');
+
+                setTimeout(() => {
+                    setSuccess('');
+                }, 2500);
+            }
+
+            document.getElementById("reset-pass-form").reset();
+
+        } catch (error) {
+            setError(error.message);
+
+            setTimeout(() => {
+                setError('');
+            }, 2500);
+        }
+    }
 
     return (
         <div className={styles['wrapper']}>
@@ -73,6 +125,32 @@ function Profile() {
                     </div>
                     : ''
                 }
+            </div>
+
+            <div className={styles['çhange-pass']}>
+                <h2>Change password</h2>
+
+                <form id="reset-pass-form" onSubmit={submitHandler}>
+
+                    <div className={styles['pass-input']}>
+                        <label>Current Password</label>
+                        <input name="currentPassword" type="password" />
+                    </div>
+
+                    <div className={styles['pass-input']}>
+                        <label>New Password</label>
+                        <input name="newPassword" type="password" />
+                    </div>
+
+                    <div className={styles['pass-input']}>
+                        <label>Repeat new password</label>
+                        <input name="rePassword" type="password" />
+                    </div>
+
+                        <button type="submit" className={styles['submit-btn']}>Save</button>
+                </form>
+                {error && <span className={styles['error']}>{error}</span>}
+                {success && <span className={styles['success']}>{success}</span>}
             </div>
         </div>
     );

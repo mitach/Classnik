@@ -43,3 +43,25 @@ export const login = async (userData) => {
         return error;
     }
 }
+
+export const changePassword = async (userId, passwords) => {
+    try {
+        const response = await fetch(baseUrl + `/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(passwords),
+        });
+
+        const result = await response.json();
+
+        if (result.message) {
+            throw new Error(result.message);
+        }
+
+        return result;
+    } catch (error) {
+        return error;
+    }
+}   
