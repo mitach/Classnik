@@ -12,6 +12,7 @@ import AdminContacts from '../../components/AdminContacts/AdminContacts';
 import ContactsForm from '../../components/ContactsForm/ContactsForm';
 import AdminSchedule from '../../components/AdminSchedule/AdminSchedule';
 import ManageStudents from '../../components/ManageStudents/ManageStudents';
+import Profile from '../../components/Profile/Profile';
 
 import styles from './layout.module.css';
 
@@ -45,6 +46,7 @@ function AdminLayout(props) {
                         <Route path='/schedule' element={<AdminSchedule />} />
                         <Route path='/contacts' element={<AdminContacts />} />
                         <Route path='/contacts/edit' element={<ContactsForm />} />
+                        <Route path='/profile/:userId' element={<Profile />} />
                     </Routes>
                 </div>
             </div>

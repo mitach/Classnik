@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 
 import * as studentService from '../../services/studentService';
+import * as parentService from '../../services/parentService';
+import * as teacherService from '../../services/teacherService';
 
 import styles from './profile.module.css';
 
@@ -18,8 +20,19 @@ function Profile() {
                     setUserInfo(result)
                 });
         } else if (user.role === 'parent') {
-            console.log('you are aa parent. Bluck')
+            parentService.getMe(userId)
+                .then(result => {
+                    setUserInfo(result)
+                });
+        } else if (user.role === 'teacher') {
+            teacherService.getMe(userId)
+                .then(result => {
+                    setUserInfo(result);
+                });
+        } else if (user.role === 'admin') {
+            setUserInfo({ firstName: 'Admin', lastName: 'Admin', email: 'admin@npgpto.bg' });
         }
+
     }, [user, userId]);
 
     return (
@@ -43,6 +56,20 @@ function Profile() {
                 {userInfo?.studentClass ?
                     <div className={styles['info-row']}>
                         <span>Student Class:</span> <span className={styles['span-info']}>{userInfo?.studentClass}</span>
+                    </div>
+                    : ''
+                }
+
+                {userInfo?.studentEmail ?
+                    <div className={styles['info-row']}>
+                        <span>Student Email:</span> <span className={styles['span-info']}>{userInfo?.studentEmail}</span>
+                    </div>
+                    : ''
+                }
+
+                {userInfo?.subject ?
+                    <div className={styles['info-row']}>
+                        <span>Subject:</span> <span className={styles['span-info']}>{userInfo?.subject}</span>
                     </div>
                     : ''
                 }

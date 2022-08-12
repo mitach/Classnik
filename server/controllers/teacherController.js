@@ -26,7 +26,7 @@ router.get('/count', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const user = await User.findById(req.params.id);
-    const teacher = await Teacher.find({ firstName: user.firstName, lastName: user.lastName });
+    const teacher = await Teacher.find({ email: user.email });
 
     if (teacher) {
         res.status(201).json(teacher[0]);
@@ -65,6 +65,7 @@ router.post('/', async (req, res) => {
     const teacher = await Teacher.create({
         firstName,
         lastName,
+        email,
         subject,
         userId: userTeacher._id,
     });

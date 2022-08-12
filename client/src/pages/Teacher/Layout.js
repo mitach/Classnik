@@ -7,6 +7,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Classes from '../../components/Classes/Classes';
 import ClassStudents from '../../components/ClassStudents/ClassStudents';
 import Contacts from '../../components/Contacts/Contacts';
+import Profile from '../../components/Profile/Profile';
 
 import styles from './layout.module.css';
 import ReviewStudents from '../../components/ReviewStudents/ReviewStudents';
@@ -39,6 +40,7 @@ function TeacherLayout(props) {
                             <Route path='/reviews' element={<Classes />} />
                             <Route path='/reviews/:id' element={<ReviewStudents />} />
                             <Route path='/contacts' element={<Contacts />} />
+                            <Route path='/profile/:userId' element={<Profile />} />
                         </Routes>
                     </div>
                 </div>
