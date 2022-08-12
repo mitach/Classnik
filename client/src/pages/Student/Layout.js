@@ -36,11 +36,11 @@ function StudentLayout(props) {
                 <div className={styles['router-body']} style={routerFilterStyle}>
                     <Routes>
                         <Route path='/' element={<StudentDashboard />} />
+                        <Route path='/profile/:userId' element={<Profile />} />
                         <Route path='/diary' element={<Diary />} />
                         <Route path='/reviews' element={<Reviews />} />
-                        <Route path='/contacts' element={<Contacts />} />
                         <Route path='/schedule' element={<Schedule />} />
-                        <Route path='/profile/:userId' element={<Profile />} />
+                        <Route path='/contacts' element={<Contacts />} />
                     </Routes>
                 </div>
             </div>

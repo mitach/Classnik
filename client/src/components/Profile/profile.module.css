@@ -1,7 +1,6 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -12,7 +11,7 @@
 }
 
 .info {
-    margin-top: 30px;
+    margin-top: 10px;
     background-color: rgb(91, 25, 233);
     padding: 30px;
     color:white;

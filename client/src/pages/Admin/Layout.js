@@ -39,6 +39,7 @@ function AdminLayout(props) {
                 <div className={styles['router-body']} style={routerFilterStyle}>
                     <Routes>
                         <Route path='/' element={<AdminDashboard />} />
+                        <Route path='/profile/:userId' element={<Profile />} />
                         <Route path='/manage-teachers' element={<ManageTeachers />} />
                         <Route path='/add-class' element={<AddStudentClass />} />
                         <Route path='/add-student' element={<AddStudent />} />
@@ -46,7 +47,6 @@ function AdminLayout(props) {
                         <Route path='/schedule' element={<AdminSchedule />} />
                         <Route path='/contacts' element={<AdminContacts />} />
                         <Route path='/contacts/edit' element={<ContactsForm />} />
-                        <Route path='/profile/:userId' element={<Profile />} />
                     </Routes>
                 </div>
             </div>

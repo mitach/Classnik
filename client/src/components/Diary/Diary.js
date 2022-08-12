@@ -23,7 +23,7 @@ function Diary() {
                         for (let grade of result.grades[key]) {
                             avg += Number(grade.grade);
                         }
-                        avg = avg / Number(result.grades[key].length);
+                        avg = (avg / Number(result.grades[key].length)).toFixed(2);
                         subjectsArr.push({ subject: key, avg });
                     }
                     setGrades(result.grades);
@@ -38,7 +38,7 @@ function Diary() {
                         for (let grade of result.grades[key]) {
                             avg += Number(grade.grade);
                         }
-                        avg = avg / Number(result.grades[key].length);
+                        avg = (avg / Number(result.grades[key].length)).toFixed(2);
                         subjectsArr.push({ subject: key, avg });
                     }
                     setGrades(result.grades);

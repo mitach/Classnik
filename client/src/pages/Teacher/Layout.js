@@ -29,21 +29,23 @@ function TeacherLayout(props) {
 
     return (
         <>
-                <Topbar setToggle={setToggleSidebarOpposite} isToggled={toggleSidebar} />
-                <div>
-                    <Sidebar sidebarStyle={sidebarStyle} />
+            <Topbar setToggle={setToggleSidebarOpposite} isToggled={toggleSidebar} />
+            <div>
+                <Sidebar sidebarStyle={sidebarStyle} />
 
-                    <div className={styles['router-body']} style={routerFilterStyle}>
-                        <Routes>
-                            <Route path='/classes' element={<Classes />} />
-                            <Route path='/classes/:id' element={<ClassStudents />} />
-                            <Route path='/reviews' element={<Classes />} />
-                            <Route path='/reviews/:id' element={<ReviewStudents />} />
-                            <Route path='/contacts' element={<Contacts />} />
-                            <Route path='/profile/:userId' element={<Profile />} />
-                        </Routes>
-                    </div>
+                <div className={styles['router-body']} style={routerFilterStyle}>
+                    <Routes>
+                        <Route path='/' element={<h1>Dashboard</h1>} />
+                        <Route path='/classes' element={<Classes />} />
+                        <Route path='/classes/:id' element={<ClassStudents />} />
+                        <Route path='/reviews' element={<Classes />} />
+                        <Route path='/reviews/:id' element={<ReviewStudents />} />
+                        <Route path='/contacts' element={<Contacts />} />
+                        <Route path='/profile/:userId' element={<Profile />} />
+                        <Route path='/*' element={<h1 className={styles['not-fount']}>Page not found</h1>} />
+                    </Routes>
                 </div>
+            </div>
 
         </>
     );

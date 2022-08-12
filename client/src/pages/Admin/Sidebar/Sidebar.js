@@ -1,6 +1,6 @@
 import LinkBlock from "./LinkBlock/LinkBlock";
 
-import { FaUserPlus, FaChalkboardTeacher, FaPhoneAlt, FaPoll, FaMailBulk, FaRegPlusSquare, FaCalendarAlt, FaIdCard, FaUserCog } from 'react-icons/fa';
+import { FaUserPlus, FaChalkboardTeacher, FaPhoneAlt, FaRegPlusSquare, FaCalendarAlt, FaIdCard, FaUserCog } from 'react-icons/fa';
 
 import styles from './sidebar.module.css';
 
@@ -14,8 +14,6 @@ function Sidebar({sidebarStyle}) {
             <LinkBlock icon={FaUserCog} text="Manage Students" to="/dashboard/students" />
             <LinkBlock icon={FaCalendarAlt} text="Update schedule" to="/dashboard/schedule" />
             <LinkBlock icon={FaPhoneAlt} text="Contacts" to="/dashboard/contacts" /> 
-            <LinkBlock icon={FaPoll} text="Surveys" to="/dashboard/surveys" />
-            <LinkBlock icon={FaMailBulk} text="Publications" to="/dashboard/publications" />
         </div>
     );
 }

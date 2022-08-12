@@ -8,7 +8,7 @@ import { FaSearchPlus } from 'react-icons/fa';
 import styles from './classes.module.css';
 
 function Classes() {
-
+    
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {

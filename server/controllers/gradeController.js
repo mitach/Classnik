@@ -15,8 +15,8 @@ router.get('/count', async (req, res) => {
 });
 
 router.get('/:userId', async (req, res) => {
-    const student = await Student.find({ userId: req.params.userId });
-    const grades = await Grade.find({ studentId: student[0]._id });
+    const student = await Student.findOne({ userId: req.params.userId });
+    const grades = await Grade.find({ studentId: student._id });
 
     let average = 0;
     if (grades.length > 0) {

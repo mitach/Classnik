@@ -27,9 +27,19 @@ router.get('/count', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const user = await User.findById(req.params.id);
-    const student = await Student.findOne({ email: user.email });
+    const student = await Student.findOne({ userId: req.params.id });
+    
+    if (student) {
+        res.status(201).json(student);
+    } else {
+        res.status(400);
+        throw new Error('Invalid student data!');
+    }
+});
 
+router.get('/byemail/:email', async (req, res) => {
+    const student = await Student.findOne({ email: req.params.email});
+    
     if (student) {
         res.status(201).json(student);
     } else {

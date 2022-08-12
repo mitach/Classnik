@@ -20,6 +20,18 @@ export const getMe = async (userId) => {
     }
 }
 
+export const getMeByEmail = async (email) => {
+    const response = await fetch(baseUrl + `/byemail/${email}`);
+
+    if (response.ok) {
+        const result = await response.json();
+
+        return result;
+    } else {
+        throw new Error({ message: 'Unable to get student!' })
+    }
+}
+
 export const getCount = async () => {
     const response = await fetch(baseUrl + '/count');
 

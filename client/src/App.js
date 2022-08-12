@@ -81,6 +81,8 @@ function App() {
                         } />
                     }
 
+                    <Route path='/*' element={<h1>Page not found</h1>} />
+
                 </Routes>
             </div>
         </AuthContext.Provider>
