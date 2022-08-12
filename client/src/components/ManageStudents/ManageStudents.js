@@ -8,12 +8,17 @@ function ManageStudents() {
     const [pageSize, setPageSize] = useState(5);
     const [currPage, setCurrPage] = useState(1);
     const [students, setStudents] = useState([]);
-    const [pages, setPages] = useState(0);
+    const [pages, setPages] = useState([]);
 
     useEffect(() => {
         studentService.getCount()
             .then(result => {
-                setPages(Math.ceil(result / pageSize));
+                let pagesNum = Math.ceil(result / pageSize);
+                let pagesArr = [];
+                for (let i = 1; i <= pagesNum; i++) {
+                    pagesArr.push(i);
+                }
+                setPages(pagesArr);
             });
 
         studentService.getStudents(pageSize, currPage)
@@ -23,8 +28,12 @@ function ManageStudents() {
 
     }, [currPage, pageSize]);
 
+    const changePageHandler = (e) => {
+        setCurrPage(e.target.textContent)
+    }
+
     const nextPageHandler = () => {
-        setCurrPage(currPage + 1);
+        setCurrPage(state => state + 1);
     }
 
     const previousPageHandler = () => {
@@ -69,13 +78,12 @@ function ManageStudents() {
                     <button onClick={pageSizeHandler} className={styles['size-btn']}>15</button>
                 </div>
 
-                {pages > 1 &&
-                    <>
-                        <button onClick={previousPageHandler} disabled={currPage < pages}>prev</button>
-                        <button onClick={nextPageHandler} disabled={currPage >= pages}>next</button>
-                    </>
-                }
-                <p>pages: {pages}</p>
+
+                <p>pages: {pages.length}</p>
+
+                <button onClick={previousPageHandler} disabled={currPage <= 1}>prev</button>
+                {pages.map(x => <button key={x} onClick={changePageHandler} className={styles['page-btn']}>{x}</button>)}
+                <button onClick={nextPageHandler} disabled={currPage >= pages.length}>next</button>
             </div>
         </div>
 

@@ -11,7 +11,7 @@ function Topbar({
     setToggle,
     isToggled
 }) {
-    const { userLogout } = useContext(AuthContext)
+    const { userLogout, user } = useContext(AuthContext)
 
     const navigate = useNavigate();
 
@@ -48,8 +48,8 @@ function Topbar({
                 </div>
 
                 <div className={styles['links']}>
-                    <Link to="/">Profile</Link>
-                    <Link to="/" onClick={handleLogout}>Logout</Link>
+                    <Link to={`profile/${user._id}`} className={styles['btn']}>Profile</Link>
+                    <Link to="/" onClick={handleLogout} className={styles['btn']}>Logout</Link>
                 </div>
             </div>
         </div>
