@@ -14,7 +14,7 @@ function TeacherDashboard() {
             .then(result => {
                 setTeacher(result)
             })
-    }, []);
+    }, [user]);
 
     return (
         <div className={styles['wrapper']}>
