@@ -5,6 +5,7 @@ Classnik is an online school diary with four roles: Admin, Teacher, Student, Par
 * Open 2 terminals (one for the client side, and one for the server)
 * First terminal - Open the **client** folder "cd ./client" -> install all dependencies "npm i" -> start the client side "npm start"
 * Second terminal - Open the **server** folder "cd ./server" -> install all dependencies "npm i" -> start the server side "npm start"
+
 ![A Video by Mitach - August 12th 2022 10_29 pm](https://user-images.githubusercontent.com/85792514/184430623-d2c7747c-5339-4583-9b78-74abd55d849d.gif)
 
 ## Guest View
@@ -40,3 +41,13 @@ Student Role functionalities:
 * Can see grades for every subject of his child
 * Can see reviews for every subject of his child
 * Can see schedule
+
+### DB models
+* contacts
+* grades
+* parents
+* reviews
+* studentclasses
+* students
+* teachers
+* users
