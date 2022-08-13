@@ -86,7 +86,10 @@ function App() {
                             <h1>Page not found</h1>
                             <Link to='/dashboard'>Go back</Link>
                         </>
-                        : <HomePage />}
+                        : <>
+                            <h1>Page not found</h1>
+                            <Link to='/'>Go back</Link>
+                        </>}
                     />
 
                 </Routes>

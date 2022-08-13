@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 
 import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
@@ -43,7 +43,12 @@ function TeacherLayout(props) {
                         <Route path='/reviews/:id' element={<ReviewStudents />} />
                         <Route path='/contacts' element={<Contacts />} />
                         <Route path='/profile/:userId' element={<Profile />} />
-                        <Route path='/*' element={<h1 className={styles['not-fount']}>Page not found</h1>} />
+                        <Route path='/*' element={
+                            <>
+                                <h1>Page not found</h1>
+                                <Link to='/dashboard'>Go back</Link>
+                            </>
+                        } />
                     </Routes>
                 </div>
             </div>

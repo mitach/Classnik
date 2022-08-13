@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 
 import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
@@ -41,6 +41,12 @@ function StudentLayout(props) {
                         <Route path='/reviews' element={<Reviews />} />
                         <Route path='/schedule' element={<Schedule />} />
                         <Route path='/contacts' element={<Contacts />} />
+                        <Route path='/*' element={
+                            <>
+                                <h1>Page not found</h1>
+                                <Link to='/dashboard'>Go back</Link>
+                            </>
+                        } />
                     </Routes>
                 </div>
             </div>

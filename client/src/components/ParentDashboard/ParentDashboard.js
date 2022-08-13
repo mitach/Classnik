@@ -43,7 +43,7 @@ function ParentDashboard() {
                 <span>Welcome</span>
                 <span>{user.name},</span>
                 <span>parent of</span>
-                <span>{parent.email}</span>
+                <span>{parent.studentEmail}</span>
             </div>
 
             <div className={styles['info']}>

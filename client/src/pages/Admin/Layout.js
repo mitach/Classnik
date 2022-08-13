@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 
 import Topbar from './Topbar/Topbar';
 import Sidebar from './Sidebar/Sidebar';
@@ -47,6 +47,12 @@ function AdminLayout(props) {
                         <Route path='/schedule' element={<AdminSchedule />} />
                         <Route path='/contacts' element={<AdminContacts />} />
                         <Route path='/contacts/edit' element={<ContactsForm />} />
+                        <Route path='/*' element={
+                            <>
+                                <h1>Page not found</h1>
+                                <Link to='/dashboard'>Go back</Link>
+                            </>
+                        } />
                     </Routes>
                 </div>
             </div>
