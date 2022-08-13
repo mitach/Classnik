@@ -41,3 +41,13 @@ Student Role functionalities:
 * Can see grades for every subject of his child
 * Can see reviews for every subject of his child
 * Can see schedule
+
+### DB models
+* contacts
+* grades
+* parents
+* reviews
+* studentclasses
+* students
+* teachers
+* users
