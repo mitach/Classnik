@@ -24,7 +24,6 @@ function StudentDashboard() {
 
         gradeService.getCountForStudent(user._id)
             .then(result => {
-                console.log(result)
                 setGradesCount(result.count);
                 setAverageGrade(result.average);
             });
